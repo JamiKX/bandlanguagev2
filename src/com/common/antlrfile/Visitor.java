@@ -8,8 +8,11 @@ import com.common.node.script.Stmt;
 import com.common.node.script.simple.ActionStmt;
 import com.common.node.script.simple.SimpleStmt;
 import com.common.node.word.Word;
+import com.common.node.word.object.LeaveTool;
 import com.common.node.word.object.Object;
-import com.common.node.word.verb.Verb;
+import com.common.node.word.object.PeopleName;
+import com.common.node.word.object.Str;
+import com.common.node.word.verb.*;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
@@ -21,7 +24,13 @@ import java.util.List;
 public class Visitor implements commonVisitor<Node> {
     public static HashMap<String, Word> map = new HashMap<>();
     static {
-
+        map.put("显示",new Show());
+        map.put("执行",new Execute());
+        map.put("删除",new Delete());
+        map.put("查找",new Search());
+        map.put("helloworld",new Str());
+        map.put("请假工具",new LeaveTool());
+        map.put("张三",new PeopleName());
     }
     @Override
     public Node visitScript(commonParser.ScriptContext ctx) {
