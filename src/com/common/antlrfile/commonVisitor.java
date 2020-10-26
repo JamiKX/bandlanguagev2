@@ -1,5 +1,4 @@
-// Generated from E:/workplace/bandlanguagev2/antlrfile\common.g4 by ANTLR 4.8
-package antlrfile;
+package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

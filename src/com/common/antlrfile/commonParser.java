@@ -1,5 +1,4 @@
-// Generated from E:/workplace/bandlanguagev2/antlrfile\common.g4 by ANTLR 4.8
-package antlrfile;
+package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -11,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class commonParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -30,9 +29,8 @@ public class commonParser extends Parser {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'\u93C4\u5267\u305A'", "'\u93B5\u0446\uE511'", "'\u9352\u72BB\u6ACE'", 
-			"'\u93CC\u30E6\u58D8'", "'helloworld'", "'\u7487\u5CF0\u4EA3\u5BB8\u30E5\u53FF'", 
-			"'\u5BEE\u72B1\u7B01'"
+			null, null, "'\u663E\u793A'", "'\u6267\u884C'", "'\u5220\u9664'", "'\u67E5\u627E'", 
+			"'helloworld'", "'\u8BF7\u5047\u5DE5\u5177'", "'\u5F20\u4E09'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -109,14 +107,6 @@ public class commonParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_script; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterScript(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitScript(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitScript(this);
 			else return visitor.visitChildren(this);
@@ -176,14 +166,6 @@ public class commonParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_stmt; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitStmt(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitStmt(this);
 			else return visitor.visitChildren(this);
@@ -220,14 +202,6 @@ public class commonParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_verb; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterVerb(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitVerb(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitVerb(this);
@@ -274,14 +248,6 @@ public class commonParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_object; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterObject(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitObject(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitObject(this);
 			else return visitor.visitChildren(this);
@@ -327,14 +293,6 @@ public class commonParser extends Parser {
 		}
 		@Override public int getRuleIndex() { return RULE_simpleStmt; }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterSimpleStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitSimpleStmt(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitSimpleStmt(this);
 			else return visitor.visitChildren(this);
@@ -370,14 +328,6 @@ public class commonParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_actionStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterActionStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitActionStmt(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitActionStmt(this);
@@ -417,14 +367,6 @@ public class commonParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_doSmtStmt; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).enterDoSmtStmt(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof commonListener ) ((commonListener)listener).exitDoSmtStmt(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitDoSmtStmt(this);
