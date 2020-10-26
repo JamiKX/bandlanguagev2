@@ -32,6 +32,7 @@ public class Visitor implements commonVisitor<Node> {
         map.put("请假工具",new LeaveTool());
         map.put("张三",new PeopleName());
     }
+
     @Override
     public Node visitScript(commonParser.ScriptContext ctx) {
         List<commonParser.StmtContext> list= ctx.stmt();
@@ -45,10 +46,7 @@ public class Visitor implements commonVisitor<Node> {
 
     @Override
     public Node visitStmt(commonParser.StmtContext ctx) {
-        Stmt stmt = new Stmt();
-        stmt.text = ctx.getText();
-        stmt.simpleStmt = (SimpleStmt) visit(ctx.simpleStmt());
-        return stmt;
+        return visit(ctx.simpleStmt());
     }
 
     @Override
@@ -67,10 +65,7 @@ public class Visitor implements commonVisitor<Node> {
 
     @Override
     public Node visitSimpleStmt(commonParser.SimpleStmtContext ctx) {
-        SimpleStmt simpleStmt = new SimpleStmt();
-        simpleStmt.text = ctx.getText();
-        simpleStmt.actionStmt = (ActionStmt) visit(ctx.actionStmt());
-        return simpleStmt;
+        return visit(ctx.actionStmt());
     }
 
     @Override
