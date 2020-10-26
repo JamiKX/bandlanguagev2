@@ -9,7 +9,7 @@ import com.common.node.script.simple.ActionStmt;
 import com.common.node.script.simple.SimpleStmt;
 import com.common.node.word.Word;
 import com.common.node.word.object.LeaveTool;
-import com.common.node.word.object.Object;
+import com.common.node.word.object.Obj;
 import com.common.node.word.object.PeopleName;
 import com.common.node.word.object.Str;
 import com.common.node.word.verb.*;
@@ -57,10 +57,10 @@ public class Visitor implements commonVisitor<Node> {
     }
 
     @Override
-    public Node visitObject(commonParser.ObjectContext ctx) {
-        Object object = (Object) map.get(ctx.getText());
-        object.text = ctx.getText();
-        return object;
+    public Node visitObj(commonParser.ObjContext ctx) {
+        Obj obj = (Obj) map.get(ctx.getText());
+        obj.text = ctx.getText();
+        return obj;
     }
 
     @Override
@@ -80,7 +80,7 @@ public class Visitor implements commonVisitor<Node> {
     public Node visitDoSmtStmt(commonParser.DoSmtStmtContext ctx) {
         DoSmtStmt doSmtStmt = new DoSmtStmt();
         doSmtStmt.text = ctx.getText();
-        doSmtStmt.object = (Object) visit(ctx.object());
+        doSmtStmt.obj = (Obj) visit(ctx.obj());
         doSmtStmt.verb = (Verb) visit(ctx.verb());
         return doSmtStmt;
     }

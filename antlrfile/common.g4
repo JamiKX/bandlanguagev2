@@ -6,13 +6,13 @@ stmt: simpleStmt;
 //谓语：显示；
 verb: Show | Execute | Delete | Search;
 //宾语：简单一个str；
-object: Str | LeaveTool | PeopleName;
+obj: Str | LeaveTool | PeopleName;
 //简单句：执行类命令
 simpleStmt: actionStmt;
 //执行类命令：谓宾 do something stmt；
 actionStmt: doSmtStmt;
 //谓宾：谓语 宾语；
-doSmtStmt: verb object;
+doSmtStmt: verb obj;
 Dot: '.' | '。';
 Show: '显示';
 Execute: '执行';
