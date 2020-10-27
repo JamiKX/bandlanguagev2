@@ -1,4 +1,4 @@
-package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.8
+package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class commonParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.7.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -18,20 +18,19 @@ public class commonParser extends Parser {
 	public static final int
 		Dot=1, Show=2, Execute=3, Delete=4, Search=5, Str=6, LeaveTool=7, PeopleName=8;
 	public static final int
-		RULE_script = 0, RULE_stmt = 1, RULE_verb = 2, RULE_obj = 3, RULE_simpleStmt = 4, 
-		RULE_actionStmt = 5, RULE_doSmtStmt = 6;
+		RULE_script = 0, RULE_stmt = 1, RULE_simpleStmt = 2, RULE_actionStmt = 3, 
+		RULE_doSmtStmt = 4, RULE_verb = 5, RULE_obj = 6;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"script", "stmt", "verb", "obj", "simpleStmt", "actionStmt", "doSmtStmt"
+			"script", "stmt", "simpleStmt", "actionStmt", "doSmtStmt", "verb", "obj"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, null, "'\u93C4\u5267\u305A'", "'\u93B5\u0446\uE511'", "'\u9352\u72BB\u6ACE'", 
-			"'\u93CC\u30E6\u58D8'", "'helloworld'", "'\u7487\u5CF0\u4EA3\u5BB8\u30E5\u53FF'", 
-			"'\u5BEE\u72B1\u7B01'"
+			null, null, "'\u663E\u793A'", "'\u6267\u884C'", "'\u5220\u9664'", "'\u67E5\u627E'", 
+			"'helloworld'", "'\u8BF7\u5047\u5DE5\u5177'", "'\u5F20\u4E09'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -194,6 +193,119 @@ public class commonParser extends Parser {
 		return _localctx;
 	}
 
+	public static class SimpleStmtContext extends ParserRuleContext {
+		public ActionStmtContext actionStmt() {
+			return getRuleContext(ActionStmtContext.class,0);
+		}
+		public SimpleStmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_simpleStmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitSimpleStmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final SimpleStmtContext simpleStmt() throws RecognitionException {
+		SimpleStmtContext _localctx = new SimpleStmtContext(_ctx, getState());
+		enterRule(_localctx, 4, RULE_simpleStmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(24);
+			actionStmt();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ActionStmtContext extends ParserRuleContext {
+		public DoSmtStmtContext doSmtStmt() {
+			return getRuleContext(DoSmtStmtContext.class,0);
+		}
+		public ActionStmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_actionStmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitActionStmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ActionStmtContext actionStmt() throws RecognitionException {
+		ActionStmtContext _localctx = new ActionStmtContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_actionStmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(26);
+			doSmtStmt();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class DoSmtStmtContext extends ParserRuleContext {
+		public VerbContext verb() {
+			return getRuleContext(VerbContext.class,0);
+		}
+		public ObjContext obj() {
+			return getRuleContext(ObjContext.class,0);
+		}
+		public DoSmtStmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_doSmtStmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitDoSmtStmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final DoSmtStmtContext doSmtStmt() throws RecognitionException {
+		DoSmtStmtContext _localctx = new DoSmtStmtContext(_ctx, getState());
+		enterRule(_localctx, 8, RULE_doSmtStmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(28);
+			verb();
+			setState(29);
+			obj();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static class VerbContext extends ParserRuleContext {
 		public TerminalNode Show() { return getToken(commonParser.Show, 0); }
 		public TerminalNode Execute() { return getToken(commonParser.Execute, 0); }
@@ -212,12 +324,12 @@ public class commonParser extends Parser {
 
 	public final VerbContext verb() throws RecognitionException {
 		VerbContext _localctx = new VerbContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_verb);
+		enterRule(_localctx, 10, RULE_verb);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(24);
+			setState(31);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Show) | (1L << Execute) | (1L << Delete) | (1L << Search))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -257,12 +369,12 @@ public class commonParser extends Parser {
 
 	public final ObjContext obj() throws RecognitionException {
 		ObjContext _localctx = new ObjContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_obj);
+		enterRule(_localctx, 12, RULE_obj);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(26);
+			setState(33);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Str) | (1L << LeaveTool) | (1L << PeopleName))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -285,130 +397,17 @@ public class commonParser extends Parser {
 		return _localctx;
 	}
 
-	public static class SimpleStmtContext extends ParserRuleContext {
-		public ActionStmtContext actionStmt() {
-			return getRuleContext(ActionStmtContext.class,0);
-		}
-		public SimpleStmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_simpleStmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitSimpleStmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final SimpleStmtContext simpleStmt() throws RecognitionException {
-		SimpleStmtContext _localctx = new SimpleStmtContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_simpleStmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(28);
-			actionStmt();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class ActionStmtContext extends ParserRuleContext {
-		public DoSmtStmtContext doSmtStmt() {
-			return getRuleContext(DoSmtStmtContext.class,0);
-		}
-		public ActionStmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_actionStmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitActionStmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final ActionStmtContext actionStmt() throws RecognitionException {
-		ActionStmtContext _localctx = new ActionStmtContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_actionStmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(30);
-			doSmtStmt();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class DoSmtStmtContext extends ParserRuleContext {
-		public VerbContext verb() {
-			return getRuleContext(VerbContext.class,0);
-		}
-		public ObjContext obj() {
-			return getRuleContext(ObjContext.class,0);
-		}
-		public DoSmtStmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_doSmtStmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof commonVisitor ) return ((commonVisitor<? extends T>)visitor).visitDoSmtStmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final DoSmtStmtContext doSmtStmt() throws RecognitionException {
-		DoSmtStmtContext _localctx = new DoSmtStmtContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_doSmtStmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(32);
-			verb();
-			setState(33);
-			obj();
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
 	public static final String _serializedATN =
 		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\n&\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\3\2\3\2\5\2\23\n\2\6\2\25\n"+
-		"\2\r\2\16\2\26\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\7\3\7\3\b\3\b\3\b\3\b"+
+		"\2\r\2\16\2\26\3\3\3\3\3\4\3\4\3\5\3\5\3\6\3\6\3\6\3\7\3\7\3\b\3\b\3\b"+
 		"\2\2\t\2\4\6\b\n\f\16\2\4\3\2\4\7\3\2\b\n\2 \2\24\3\2\2\2\4\30\3\2\2\2"+
-		"\6\32\3\2\2\2\b\34\3\2\2\2\n\36\3\2\2\2\f \3\2\2\2\16\"\3\2\2\2\20\22"+
-		"\5\4\3\2\21\23\7\3\2\2\22\21\3\2\2\2\22\23\3\2\2\2\23\25\3\2\2\2\24\20"+
-		"\3\2\2\2\25\26\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\3\3\2\2\2\30\31"+
-		"\5\n\6\2\31\5\3\2\2\2\32\33\t\2\2\2\33\7\3\2\2\2\34\35\t\3\2\2\35\t\3"+
-		"\2\2\2\36\37\5\f\7\2\37\13\3\2\2\2 !\5\16\b\2!\r\3\2\2\2\"#\5\6\4\2#$"+
-		"\5\b\5\2$\17\3\2\2\2\4\22\26";
+		"\6\32\3\2\2\2\b\34\3\2\2\2\n\36\3\2\2\2\f!\3\2\2\2\16#\3\2\2\2\20\22\5"+
+		"\4\3\2\21\23\7\3\2\2\22\21\3\2\2\2\22\23\3\2\2\2\23\25\3\2\2\2\24\20\3"+
+		"\2\2\2\25\26\3\2\2\2\26\24\3\2\2\2\26\27\3\2\2\2\27\3\3\2\2\2\30\31\5"+
+		"\6\4\2\31\5\3\2\2\2\32\33\5\b\5\2\33\7\3\2\2\2\34\35\5\n\6\2\35\t\3\2"+
+		"\2\2\36\37\5\f\7\2\37 \5\16\b\2 \13\3\2\2\2!\"\t\2\2\2\"\r\3\2\2\2#$\t"+
+		"\3\2\2$\17\3\2\2\2\4\22\26";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

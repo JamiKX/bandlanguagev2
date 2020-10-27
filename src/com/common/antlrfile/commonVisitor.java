@@ -1,4 +1,4 @@
-package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.8
+package com.common.antlrfile;// Generated from common.g4 by ANTLR 4.7.2
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -22,18 +22,6 @@ public interface commonVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmt(commonParser.StmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link commonParser#verb}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVerb(commonParser.VerbContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link commonParser#obj}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitObj(commonParser.ObjContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link commonParser#simpleStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -51,4 +39,16 @@ public interface commonVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDoSmtStmt(commonParser.DoSmtStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link commonParser#verb}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVerb(commonParser.VerbContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link commonParser#obj}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObj(commonParser.ObjContext ctx);
 }
