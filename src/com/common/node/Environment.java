@@ -19,4 +19,13 @@ public class Environment {
 
     //保存用户选择的句子的执行方法，按照句子顺序进行存储和拿取
     public Queue<String> methodChoosed = new LinkedList<String>();
+
+
+    public Object getStoreValue(String name){
+        if(result.containsKey(name)){
+            return result.get(name);
+        }else {
+            return null;
+        }
+    }
 }

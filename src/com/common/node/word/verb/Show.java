@@ -24,7 +24,8 @@ public class Show extends Verb {
         for (Method m : MethodList){
             if(m.getName().equals(methodName)){
                 try {
-                    res = (boolean)m.invoke(this);
+                    m.invoke(this);
+                    res = true;
                 }catch (Exception e){
                     System.out.println(text+":利用反射调用函数出现异常");
                     res = false;
@@ -40,7 +41,7 @@ public class Show extends Verb {
         Environment environment = Context.getEnvironment();
         Obj obj = (Obj)environment.resultForSingleNode.pop();
         obj.run("");
-        environment.showForUser.put("result", environment.resultForSingleNode.pop());
+        environment.showForUser.put("result",environment.resultForSingleNode.pop());
         return true;
     }
 

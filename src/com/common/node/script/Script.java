@@ -13,7 +13,10 @@ public class Script implements Node {
 
     @Override
     public boolean run(String methodName) {
-        return false;
+        for (Stmt stmt: listStmt) {
+            stmt.run(methodName);
+        }
+        return true;
     }
 
     @Override
