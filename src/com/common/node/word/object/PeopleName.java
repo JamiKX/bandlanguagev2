@@ -7,8 +7,12 @@ import net.sf.json.JSONObject;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
-public class PeopleName extends Obj {
+public class PeopleName implements Obj {
+
+    //存放该节点所对应的文本
+    public String text;
 
     @Override
     public boolean run(String methodName) {
@@ -32,6 +36,11 @@ public class PeopleName extends Obj {
             }
         }
         return res;
+    }
+
+    @Override
+    public void checkSelf(List<String> nodes) {
+
     }
 
     /**
@@ -75,5 +84,10 @@ public class PeopleName extends Obj {
         else {
             return false;
         }
+    }
+
+    @Override
+    public void setText(String t) {
+        text = t;
     }
 }

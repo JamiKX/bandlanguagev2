@@ -51,14 +51,14 @@ public class Visitor implements commonVisitor<Node> {
     @Override
     public Node visitVerb(commonParser.VerbContext ctx) {
         Verb verb = (Verb) map.get(ctx.getText());
-        verb.text = ctx.getText();
+        verb.setText(ctx.getText());
         return verb;
     }
 
     @Override
     public Node visitObj(commonParser.ObjContext ctx) {
         Obj obj = (Obj) map.get(ctx.getText());
-        obj.text = ctx.getText();
+        obj.setText(ctx.getText());
         return obj;
     }
 

@@ -9,7 +9,9 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 //“显示”所对应的节点
-public class Show extends Verb {
+public class Show implements Verb {
+    //存放该节点所对应的文本
+    public String text;
 
     @Override
     public boolean run(String methodName) {
@@ -56,5 +58,10 @@ public class Show extends Verb {
     @Override
     public void checkSelf(List<String> nodes) {
 
+    }
+
+    @Override
+    public void setText(String t) {
+        text = t;
     }
 }
