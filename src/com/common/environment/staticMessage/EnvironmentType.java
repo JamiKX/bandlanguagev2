@@ -1,5 +1,9 @@
 package com.common.environment.staticMessage;
 
+/**
+ * 词义的具体类型
+ *
+ */
 public enum EnvironmentType{
     ORGANIZATION, //机构环境
     BAND, // 帮区环境

@@ -1,10 +1,12 @@
 package com.common.environment;
 
+import com.common.environment.staticMessage.BLObjType;
 import com.common.environment.staticMessage.EnvironmentType;
 import com.common.environment.wetoband.BLObj;
 import com.common.environment.wetoband.Band;
-import com.common.environment.wetoband.Const;
+import com.common.environment.wetoband.WTBConst;
 import com.common.environment.wetoband.Organization;
+import com.common.environment.wetoband.WTBConst;
 import com.common.node.word.object.Str;
 import com.common.utils.Tool;
 
@@ -32,7 +34,7 @@ public class Environment {
         String oname = Tool.getOrganizationName();
         String bname = Tool.getBandName();
         //初始化机构环境
-        List<Organization> olists = Const.organizations;
+        List<Organization> olists = WTBConst.organizations;
         for (Organization a :olists){
             if(a.name.equals(oname)){
                 this.organization = a;
@@ -104,21 +106,22 @@ public class Environment {
      * 在某个环境中，加入一个对象
      * @param key 中文名称
      * @param value 内容
+     * @param valueType 值的类型
      * @param type 选择的环境
      */
-    public void add(String key,Object value,EnvironmentType type){
+    public void add(String key,Object value,BLObjType valueType,EnvironmentType type){
         switch (type){
             case ORGANIZATION:
-                addInOrganization(key,value);
+                addInOrganization(key,value,valueType);
                 break;
             case BAND:
-                addInBand(key,value);
+                addInBand(key,value,valueType);
                 break;
             case MEMORY:
-                addInMemory(key,value);
+                addInMemory(key,value,valueType);
                 break;
             case STACK:
-                addInStack(key,value);
+                addInStack(key,value,valueType);
                 break;
             default: return ;
         }
@@ -205,10 +208,11 @@ public class Environment {
      * 将对象插入到单句环境中
      * @param key 中文名称
      * @param value 值
+     * @param type 值的类型
      * @return
      */
-    private void addInStack(String key ,Object value){
-        BLObj obj = new BLObj(key,value);
+    private void addInStack(String key , Object value, BLObjType type){
+        BLObj obj = new BLObj(key,value,type);
         scriptEnvironment.add(obj);
     }
 
@@ -216,10 +220,11 @@ public class Environment {
      * 将对象插入到全局环境中
      * @param key 中文名称
      * @param value 值
+     * @param type 值的类型
      * @return
      */
-    private void addInMemory(String key ,Object value){
-        BLObj obj = new BLObj(key,value);
+    private void addInMemory(String key ,Object value,BLObjType type){
+        BLObj obj = new BLObj(key,value,type);
         scriptEnvironment.add(place,obj);
         place++;
     }
@@ -228,10 +233,11 @@ public class Environment {
      * 将对象插入到帮区环境中
      * @param key 中文名称
      * @param value 值
+     * @param type 值的类型
      * @return
      */
-    private void addInBand(String key ,Object value){
-        BLObj obj = new BLObj(key,value);
+    private void addInBand(String key ,Object value,BLObjType type){
+        BLObj obj = new BLObj(key,value,type);
         this.band.things.add(obj);
     }
 
@@ -239,10 +245,11 @@ public class Environment {
      * 将对象插入到机构环境中
      * @param key 中文名称
      * @param value 值
+     * @param type 值的类型
      * @return
      */
-    private void addInOrganization(String key ,Object value){
-        BLObj obj = new BLObj(key,value);
+    private void addInOrganization(String key ,Object value,BLObjType type){
+        BLObj obj = new BLObj(key,value,type);
         this.organization.things.add(obj);
     }
 
