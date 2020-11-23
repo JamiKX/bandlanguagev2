@@ -1,12 +1,14 @@
-package com.common.node.script;
+package com.common.node.element;
 
 import com.common.node.Node;
 
 import java.util.List;
 import java.util.Map;
 
-//句子父类
-public class Stmt implements Node {
+//句子结构的基本父类
+public class Element implements Node {
+    public String text;//剧本内容
+
     @Override
     public boolean run(String methodName) {
         return false;

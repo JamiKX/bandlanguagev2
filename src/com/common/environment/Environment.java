@@ -6,8 +6,6 @@ import com.common.environment.wetoband.BLObj;
 import com.common.environment.wetoband.Band;
 import com.common.environment.wetoband.WTBConst;
 import com.common.environment.wetoband.Organization;
-import com.common.environment.wetoband.WTBConst;
-import com.common.node.word.object.Str;
 import com.common.utils.Tool;
 
 import java.util.HashMap;
@@ -35,18 +33,24 @@ public class Environment {
         String bname = Tool.getBandName();
         //初始化机构环境
         List<Organization> olists = WTBConst.organizations;
-        for (Organization a :olists){
-            if(a.name.equals(oname)){
-                this.organization = a;
-            }
-        }
+
+        //演示
+        this.organization = olists.get(0);
+//        for (Organization a :olists){
+//            if(a.name.equals(oname)){
+//                this.organization = a;
+//            }
+//        }
         //初始化帮区环境
         List<Band> blists = this.organization.bands;
-        for (Band a :blists){
-            if(a.name.equals(bname)){
-                this.band = a;
-            }
-        }
+        //演示
+        this.band = blists.get(0);
+
+//        for (Band a :blists){
+//            if(a.name.equals(bname)){
+//                this.band = a;
+//            }
+//        }
         this.scriptEnvironment = new LinkedList<BLObj>();
         this.place = 0;
     }

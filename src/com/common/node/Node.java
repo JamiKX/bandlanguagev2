@@ -1,6 +1,8 @@
 package com.common.node;
 
 import java.util.List;
+import java.util.Map;
+
 //树节点的最基本的接口
 public interface Node {
     /**
@@ -12,7 +14,7 @@ public interface Node {
 
     /**
      * 检测当前节点是否有二义性，如果有，则放到nodes中
-     * @param nodes 当前具有二义性的节点(节点所对应的文本)
+     * @param nodes 存放那些具有二义性的节点 key是对应中文,value是它所有的执行方法
      */
-    void checkSelf(List<String> nodes);
+    void checkSelf(Map<String,List<Object>> nodes);
 }

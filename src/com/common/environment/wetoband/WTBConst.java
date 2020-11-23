@@ -1,5 +1,6 @@
 package com.common.environment.wetoband;
 
+import com.common.environment.staticMessage.BLObjType;
 import com.common.environment.wetoband.Organization;
 
 import java.util.LinkedList;
@@ -10,4 +11,17 @@ import java.util.List;
  */
 public class WTBConst {
     public static List<Organization> organizations = new LinkedList<>();
+
+    //演示
+    static {
+        Organization organization = new Organization();
+        Band band = new Band();
+        band.name = "测试帮区";
+        band.things.add(new BLObj("测试工具","1231231", BLObjType.TOOLID));
+        organization.name = "测试机构";
+        organization.bands.add(band);
+        organization.things.add(new BLObj("张三","1112111",BLObjType.USERID));
+
+        organizations.add(organization);
+    }
 }

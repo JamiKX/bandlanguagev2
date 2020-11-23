@@ -10,7 +10,7 @@ predicate_adverbial_attribute_object_stmt|
 predicate_object_stmt;
 
 //句子结构的划分
-//谓定宾句：谓语 定语  定语 宾语
+//谓状定宾句：谓语 状语  定语 宾语
 predicate_adverbial_attribute_object_stmt:predicate adverbial attribute object;
 //谓定宾句：谓语  定语 宾语
 predicate_attribute_object_stmt:predicate attribute object;
@@ -44,13 +44,13 @@ subject:String;
 
 //宾语:用户名称|工具名称|文档名称|岗位名称|对象名称|用户账号|消息板名称|帮区名称|机构名称|属性名称
 //宾语:固定的某些名称，如 ***部件 、最小值
-object:String|noun|object Split (String|noun);
+object:(String|noun) (Split (String|noun))*;
 
 //谓语:动词
 predicate:verb;
 //定语：对象名称|形容词|条件判断的句子
-attribute:((String|simpleStmt|adjective) De) ((String|simpleStmt|adjective|noun) De)*;
-//状语:时间状语|地点状语
+attribute:((String|simpleStmt|adjective|noun) De)+;
+//状语:时间状语|地点状语|通用状语
 adverbial:place_adverbial|time_adverbial|common_adverbial;
 
 //地点状语:在 帮区/机构/结果名称
@@ -58,7 +58,7 @@ place_adverbial:At String (In)? ;
 
 //时间状语:在 时间
 time_adverbial:At time;
-
+//通用状语： *** 中
 common_adverbial:String In;
 
 // 词的划分
@@ -129,7 +129,7 @@ Jiang:'将';
 According:'根据'|'按照';
 At:'在';
 
-
+//分割符号
 Comma :','|'，';
 Dot :'.'|'。';
 Split:'、';
