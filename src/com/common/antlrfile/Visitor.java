@@ -20,17 +20,68 @@ import com.common.node.sentence.simple.SimpleStmt1;
 import com.common.node.sentence.simple.SimpleStmt2;
 import com.common.node.sentence.simple.SimpleStmt3;
 import com.common.node.sentence.simple.SimpleStmt4;
+import com.common.node.word.Num;
+import com.common.node.word.Str;
+import com.common.node.word.Word;
+import com.common.node.word.real.adjective.Old;
+import com.common.node.word.real.noun.*;
 import com.common.node.word.real.noun.time.Today;
-import com.common.node.word.real.verb.Verb;
+import com.common.node.word.real.quantifiers.Ge;
+import com.common.node.word.real.verb.*;
+import com.common.node.word.real.verb.compare.*;
+import com.common.node.word.real.verb.sort.SortAscending;
+import com.common.node.word.real.verb.sort.SortDescending;
 import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.RuleNode;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class Visitor implements BLVisitor<Node> {
+
+    public Map<String, Word> wordMap = new HashMap<>();
+    {
+        wordMap.put("显示", new Show());
+        wordMap.put("执行", new Execute());
+        wordMap.put("得到", new Get());
+        wordMap.put("找出", new Find());
+        wordMap.put("去掉", new Remove());
+        wordMap.put("求", new Qiu());
+        wordMap.put("设定", new Set());
+        wordMap.put("统计", new Count());
+        wordMap.put("进行", new CarryOut());
+        wordMap.put("升序排序", new SortAscending());
+        wordMap.put("降序排序", new SortDescending());
+        wordMap.put("进行分组", new Group());
+        wordMap.put("输入部件", new InputPart());
+        wordMap.put("输出部件", new OutputPart());
+        wordMap.put("元素", new Element());
+        wordMap.put("数量", new Amount());
+        wordMap.put("数据", new Data());
+        wordMap.put("最大值", new Max());
+        wordMap.put("最小值", new Min());
+        wordMap.put("平均值", new Average());
+        wordMap.put("今天", new Today());
+        wordMap.put("个", new Ge());
+        wordMap.put("老的", new Old());
+        wordMap.put("等于", new Equals());
+        wordMap.put("=", new Equals());
+        wordMap.put("大于", new MoreThan());
+        wordMap.put(">", new MoreThan());
+        wordMap.put("小于", new LessThan());
+        wordMap.put("<", new LessThan());
+        wordMap.put("不等于", new NoEquals());
+        wordMap.put("!=", new NoEquals());
+        wordMap.put("不大于", new NoMoreThan());
+        wordMap.put("<=", new NoMoreThan());
+        wordMap.put("不小于", new NoLessThan());
+        wordMap.put(">=", new NoLessThan());
+    }
+
     @Override
     public Node visitScript(BLParser.ScriptContext ctx) {
         Script script = new Script();
@@ -275,7 +326,13 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitTerminal(TerminalNode terminalNode) {
         //从map中找到对应的实例
-        return null;
+        if(wordMap.containsKey(terminalNode.getText())){
+            return wordMap.get(terminalNode.getText());
+        }else if(terminalNode.getText().matches("[0-9]+")){
+            return new Num();
+        }else{
+            return new Str();
+        }
     }
 
     @Override
