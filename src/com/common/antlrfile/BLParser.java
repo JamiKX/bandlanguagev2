@@ -23,22 +23,23 @@ public class BLParser extends Parser {
 		Today=27, Ge=28, Old=29, De=30, Among=31, In=32, Jiang=33, According=34, 
 		At=35, Comma=36, Dot=37, Split=38, Number=39, String=40, Ws=41, Comment=42;
 	public static final int
-		RULE_script = 0, RULE_stmt = 1, RULE_simpleStmt = 2, RULE_predicate_adverbial_attribute_object_stmt = 3, 
-		RULE_predicate_attribute_object_stmt = 4, RULE_subject_predicate_object_stmt = 5, 
-		RULE_predicate_object_stmt = 6, RULE_complexStmt = 7, RULE_runToolStmt = 8, 
-		RULE_setStmt = 9, RULE_sortStmt = 10, RULE_groupStmt = 11, RULE_subject = 12, 
-		RULE_object = 13, RULE_predicate = 14, RULE_attribute = 15, RULE_adverbial = 16, 
-		RULE_place_adverbial = 17, RULE_time_adverbial = 18, RULE_common_adverbial = 19, 
-		RULE_noun = 20, RULE_verb = 21, RULE_adjective = 22, RULE_numerals = 23, 
-		RULE_quantifiers = 24, RULE_time = 25, RULE_compare = 26, RULE_sort = 27;
+		RULE_script = 0, RULE_stmt = 1, RULE_complexStmt = 2, RULE_simpleStmt = 3, 
+		RULE_runToolStmt = 4, RULE_setStmt = 5, RULE_sortStmt = 6, RULE_groupStmt = 7, 
+		RULE_predicate_adverbial_attribute_object_stmt = 8, RULE_predicate_attribute_object_stmt = 9, 
+		RULE_subject_predicate_object_stmt = 10, RULE_predicate_object_stmt = 11, 
+		RULE_compare_stmt = 12, RULE_subject = 13, RULE_object = 14, RULE_predicate = 15, 
+		RULE_attribute = 16, RULE_adverbial = 17, RULE_place_adverbial = 18, RULE_time_adverbial = 19, 
+		RULE_common_adverbial = 20, RULE_noun = 21, RULE_verb = 22, RULE_adjective = 23, 
+		RULE_numerals = 24, RULE_quantifiers = 25, RULE_time = 26, RULE_compare = 27, 
+		RULE_sort = 28;
 	private static String[] makeRuleNames() {
 		return new String[] {
-			"script", "stmt", "simpleStmt", "predicate_adverbial_attribute_object_stmt", 
+			"script", "stmt", "complexStmt", "simpleStmt", "runToolStmt", "setStmt", 
+			"sortStmt", "groupStmt", "predicate_adverbial_attribute_object_stmt", 
 			"predicate_attribute_object_stmt", "subject_predicate_object_stmt", "predicate_object_stmt", 
-			"complexStmt", "runToolStmt", "setStmt", "sortStmt", "groupStmt", "subject", 
-			"object", "predicate", "attribute", "adverbial", "place_adverbial", "time_adverbial", 
-			"common_adverbial", "noun", "verb", "adjective", "numerals", "quantifiers", 
-			"time", "compare", "sort"
+			"compare_stmt", "subject", "object", "predicate", "attribute", "adverbial", 
+			"place_adverbial", "time_adverbial", "common_adverbial", "noun", "verb", 
+			"adjective", "numerals", "quantifiers", "time", "compare", "sort"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -146,30 +147,30 @@ public class BLParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(60); 
+			setState(62); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(56);
-				stmt();
 				setState(58);
+				stmt();
+				setState(60);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if (_la==Dot) {
 					{
-					setState(57);
+					setState(59);
 					match(Dot);
 					}
 				}
 
 				}
 				}
-				setState(62); 
+				setState(64); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Show) | (1L << Execute) | (1L << Get) | (1L << Find) | (1L << Remove) | (1L << Qiu) | (1L << Set) | (1L << Count) | (1L << CarryOut) | (1L << SortAscending) | (1L << SortDescending) | (1L << Group) | (1L << Equals) | (1L << MoreThan) | (1L << LessThan) | (1L << NoEquals) | (1L << NoMoreThan) | (1L << NoLessThan) | (1L << Jiang) | (1L << According) | (1L << String))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Show) | (1L << Execute) | (1L << Get) | (1L << Find) | (1L << Remove) | (1L << Qiu) | (1L << Set) | (1L << Count) | (1L << CarryOut) | (1L << SortAscending) | (1L << SortDescending) | (1L << Group) | (1L << InputPart) | (1L << OutputPart) | (1L << Element) | (1L << Amount) | (1L << Data) | (1L << Max) | (1L << Min) | (1L << Average) | (1L << Today) | (1L << Jiang) | (1L << According) | (1L << Number) | (1L << String))) != 0) );
 			}
 		}
 		catch (RecognitionException re) {
@@ -205,279 +206,23 @@ public class BLParser extends Parser {
 		StmtContext _localctx = new StmtContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_stmt);
 		try {
-			setState(66);
+			setState(68);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(64);
+				setState(66);
 				simpleStmt();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(65);
+				setState(67);
 				complexStmt();
 				}
 				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class SimpleStmtContext extends ParserRuleContext {
-		public Subject_predicate_object_stmtContext subject_predicate_object_stmt() {
-			return getRuleContext(Subject_predicate_object_stmtContext.class,0);
-		}
-		public Predicate_attribute_object_stmtContext predicate_attribute_object_stmt() {
-			return getRuleContext(Predicate_attribute_object_stmtContext.class,0);
-		}
-		public Predicate_adverbial_attribute_object_stmtContext predicate_adverbial_attribute_object_stmt() {
-			return getRuleContext(Predicate_adverbial_attribute_object_stmtContext.class,0);
-		}
-		public Predicate_object_stmtContext predicate_object_stmt() {
-			return getRuleContext(Predicate_object_stmtContext.class,0);
-		}
-		public SimpleStmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_simpleStmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitSimpleStmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final SimpleStmtContext simpleStmt() throws RecognitionException {
-		SimpleStmtContext _localctx = new SimpleStmtContext(_ctx, getState());
-		enterRule(_localctx, 4, RULE_simpleStmt);
-		try {
-			setState(72);
-			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
-			case 1:
-				enterOuterAlt(_localctx, 1);
-				{
-				setState(68);
-				subject_predicate_object_stmt();
-				}
-				break;
-			case 2:
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(69);
-				predicate_attribute_object_stmt();
-				}
-				break;
-			case 3:
-				enterOuterAlt(_localctx, 3);
-				{
-				setState(70);
-				predicate_adverbial_attribute_object_stmt();
-				}
-				break;
-			case 4:
-				enterOuterAlt(_localctx, 4);
-				{
-				setState(71);
-				predicate_object_stmt();
-				}
-				break;
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Predicate_adverbial_attribute_object_stmtContext extends ParserRuleContext {
-		public PredicateContext predicate() {
-			return getRuleContext(PredicateContext.class,0);
-		}
-		public AdverbialContext adverbial() {
-			return getRuleContext(AdverbialContext.class,0);
-		}
-		public AttributeContext attribute() {
-			return getRuleContext(AttributeContext.class,0);
-		}
-		public ObjectContext object() {
-			return getRuleContext(ObjectContext.class,0);
-		}
-		public Predicate_adverbial_attribute_object_stmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_predicate_adverbial_attribute_object_stmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_adverbial_attribute_object_stmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Predicate_adverbial_attribute_object_stmtContext predicate_adverbial_attribute_object_stmt() throws RecognitionException {
-		Predicate_adverbial_attribute_object_stmtContext _localctx = new Predicate_adverbial_attribute_object_stmtContext(_ctx, getState());
-		enterRule(_localctx, 6, RULE_predicate_adverbial_attribute_object_stmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(74);
-			predicate();
-			setState(75);
-			adverbial();
-			setState(76);
-			attribute();
-			setState(77);
-			object(0);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Predicate_attribute_object_stmtContext extends ParserRuleContext {
-		public PredicateContext predicate() {
-			return getRuleContext(PredicateContext.class,0);
-		}
-		public AttributeContext attribute() {
-			return getRuleContext(AttributeContext.class,0);
-		}
-		public ObjectContext object() {
-			return getRuleContext(ObjectContext.class,0);
-		}
-		public Predicate_attribute_object_stmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_predicate_attribute_object_stmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_attribute_object_stmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Predicate_attribute_object_stmtContext predicate_attribute_object_stmt() throws RecognitionException {
-		Predicate_attribute_object_stmtContext _localctx = new Predicate_attribute_object_stmtContext(_ctx, getState());
-		enterRule(_localctx, 8, RULE_predicate_attribute_object_stmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(79);
-			predicate();
-			setState(80);
-			attribute();
-			setState(81);
-			object(0);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Subject_predicate_object_stmtContext extends ParserRuleContext {
-		public SubjectContext subject() {
-			return getRuleContext(SubjectContext.class,0);
-		}
-		public PredicateContext predicate() {
-			return getRuleContext(PredicateContext.class,0);
-		}
-		public ObjectContext object() {
-			return getRuleContext(ObjectContext.class,0);
-		}
-		public Subject_predicate_object_stmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_subject_predicate_object_stmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitSubject_predicate_object_stmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Subject_predicate_object_stmtContext subject_predicate_object_stmt() throws RecognitionException {
-		Subject_predicate_object_stmtContext _localctx = new Subject_predicate_object_stmtContext(_ctx, getState());
-		enterRule(_localctx, 10, RULE_subject_predicate_object_stmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(83);
-			subject();
-			setState(84);
-			predicate();
-			setState(85);
-			object(0);
-			}
-		}
-		catch (RecognitionException re) {
-			_localctx.exception = re;
-			_errHandler.reportError(this, re);
-			_errHandler.recover(this, re);
-		}
-		finally {
-			exitRule();
-		}
-		return _localctx;
-	}
-
-	public static class Predicate_object_stmtContext extends ParserRuleContext {
-		public PredicateContext predicate() {
-			return getRuleContext(PredicateContext.class,0);
-		}
-		public ObjectContext object() {
-			return getRuleContext(ObjectContext.class,0);
-		}
-		public Predicate_object_stmtContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_predicate_object_stmt; }
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_object_stmt(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-
-	public final Predicate_object_stmtContext predicate_object_stmt() throws RecognitionException {
-		Predicate_object_stmtContext _localctx = new Predicate_object_stmtContext(_ctx, getState());
-		enterRule(_localctx, 12, RULE_predicate_object_stmt);
-		try {
-			enterOuterAlt(_localctx, 1);
-			{
-			setState(87);
-			predicate();
-			setState(88);
-			object(0);
 			}
 		}
 		catch (RecognitionException re) {
@@ -517,37 +262,119 @@ public class BLParser extends Parser {
 
 	public final ComplexStmtContext complexStmt() throws RecognitionException {
 		ComplexStmtContext _localctx = new ComplexStmtContext(_ctx, getState());
-		enterRule(_localctx, 14, RULE_complexStmt);
+		enterRule(_localctx, 4, RULE_complexStmt);
 		try {
-			setState(94);
+			setState(74);
 			_errHandler.sync(this);
-			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(90);
+				setState(70);
 				runToolStmt();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(91);
+				setState(71);
 				setStmt();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(92);
+				setState(72);
 				sortStmt();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(93);
+				setState(73);
 				groupStmt();
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class SimpleStmtContext extends ParserRuleContext {
+		public Subject_predicate_object_stmtContext subject_predicate_object_stmt() {
+			return getRuleContext(Subject_predicate_object_stmtContext.class,0);
+		}
+		public Predicate_attribute_object_stmtContext predicate_attribute_object_stmt() {
+			return getRuleContext(Predicate_attribute_object_stmtContext.class,0);
+		}
+		public Predicate_adverbial_attribute_object_stmtContext predicate_adverbial_attribute_object_stmt() {
+			return getRuleContext(Predicate_adverbial_attribute_object_stmtContext.class,0);
+		}
+		public Predicate_object_stmtContext predicate_object_stmt() {
+			return getRuleContext(Predicate_object_stmtContext.class,0);
+		}
+		public Compare_stmtContext compare_stmt() {
+			return getRuleContext(Compare_stmtContext.class,0);
+		}
+		public SimpleStmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_simpleStmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitSimpleStmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final SimpleStmtContext simpleStmt() throws RecognitionException {
+		SimpleStmtContext _localctx = new SimpleStmtContext(_ctx, getState());
+		enterRule(_localctx, 6, RULE_simpleStmt);
+		try {
+			setState(81);
+			_errHandler.sync(this);
+			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
+			case 1:
+				enterOuterAlt(_localctx, 1);
+				{
+				setState(76);
+				subject_predicate_object_stmt();
+				}
+				break;
+			case 2:
+				enterOuterAlt(_localctx, 2);
+				{
+				setState(77);
+				predicate_attribute_object_stmt();
+				}
+				break;
+			case 3:
+				enterOuterAlt(_localctx, 3);
+				{
+				setState(78);
+				predicate_adverbial_attribute_object_stmt();
+				}
+				break;
+			case 4:
+				enterOuterAlt(_localctx, 4);
+				{
+				setState(79);
+				predicate_object_stmt();
+				}
+				break;
+			case 5:
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(80);
+				compare_stmt();
 				}
 				break;
 			}
@@ -575,11 +402,11 @@ public class BLParser extends Parser {
 			return getToken(BLParser.Comma, i);
 		}
 		public TerminalNode Among() { return getToken(BLParser.Among, 0); }
-		public List<Subject_predicate_object_stmtContext> subject_predicate_object_stmt() {
-			return getRuleContexts(Subject_predicate_object_stmtContext.class);
+		public List<Compare_stmtContext> compare_stmt() {
+			return getRuleContexts(Compare_stmtContext.class);
 		}
-		public Subject_predicate_object_stmtContext subject_predicate_object_stmt(int i) {
-			return getRuleContext(Subject_predicate_object_stmtContext.class,i);
+		public Compare_stmtContext compare_stmt(int i) {
+			return getRuleContext(Compare_stmtContext.class,i);
 		}
 		public RunToolStmtContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -594,24 +421,24 @@ public class BLParser extends Parser {
 
 	public final RunToolStmtContext runToolStmt() throws RecognitionException {
 		RunToolStmtContext _localctx = new RunToolStmtContext(_ctx, getState());
-		enterRule(_localctx, 16, RULE_runToolStmt);
+		enterRule(_localctx, 8, RULE_runToolStmt);
 		int _la;
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(96);
+			setState(83);
 			predicate_object_stmt();
-			setState(105);
+			setState(92);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,6,_ctx) ) {
 			case 1:
 				{
-				setState(97);
+				setState(84);
 				match(Comma);
-				setState(98);
+				setState(85);
 				match(Among);
-				setState(101); 
+				setState(88); 
 				_errHandler.sync(this);
 				_alt = 1;
 				do {
@@ -619,31 +446,31 @@ public class BLParser extends Parser {
 					case 1:
 						{
 						{
-						setState(99);
+						setState(86);
 						match(Comma);
-						setState(100);
-						subject_predicate_object_stmt();
+						setState(87);
+						compare_stmt();
 						}
 						}
 						break;
 					default:
 						throw new NoViableAltException(this);
 					}
-					setState(103); 
+					setState(90); 
 					_errHandler.sync(this);
 					_alt = getInterpreter().adaptivePredict(_input,5,_ctx);
 				} while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER );
 				}
 				break;
 			}
-			setState(109);
+			setState(96);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==Comma) {
 				{
-				setState(107);
+				setState(94);
 				match(Comma);
-				setState(108);
+				setState(95);
 				predicate_object_stmt();
 				}
 			}
@@ -685,34 +512,34 @@ public class BLParser extends Parser {
 
 	public final SetStmtContext setStmt() throws RecognitionException {
 		SetStmtContext _localctx = new SetStmtContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_setStmt);
+		enterRule(_localctx, 10, RULE_setStmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(111);
+			setState(98);
 			match(Set);
-			setState(112);
+			setState(99);
 			match(String);
-			setState(113);
+			setState(100);
 			match(Equals);
-			setState(117);
+			setState(104);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,8,_ctx) ) {
 			case 1:
 				{
-				setState(114);
+				setState(101);
 				stmt();
 				}
 				break;
 			case 2:
 				{
-				setState(115);
+				setState(102);
 				match(String);
 				}
 				break;
 			case 3:
 				{
-				setState(116);
+				setState(103);
 				match(Number);
 				}
 				break;
@@ -754,21 +581,21 @@ public class BLParser extends Parser {
 
 	public final SortStmtContext sortStmt() throws RecognitionException {
 		SortStmtContext _localctx = new SortStmtContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_sortStmt);
+		enterRule(_localctx, 12, RULE_sortStmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(119);
+			setState(106);
 			match(According);
-			setState(120);
+			setState(107);
 			match(String);
-			setState(121);
+			setState(108);
 			match(Jiang);
-			setState(122);
+			setState(109);
 			match(String);
-			setState(123);
+			setState(110);
 			match(CarryOut);
-			setState(124);
+			setState(111);
 			sort();
 			}
 		}
@@ -804,20 +631,250 @@ public class BLParser extends Parser {
 
 	public final GroupStmtContext groupStmt() throws RecognitionException {
 		GroupStmtContext _localctx = new GroupStmtContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_groupStmt);
+		enterRule(_localctx, 14, RULE_groupStmt);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(126);
+			setState(113);
 			match(Jiang);
-			setState(127);
+			setState(114);
 			match(String);
-			setState(128);
+			setState(115);
 			match(According);
-			setState(129);
+			setState(116);
 			match(String);
-			setState(130);
+			setState(117);
 			match(Group);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Predicate_adverbial_attribute_object_stmtContext extends ParserRuleContext {
+		public PredicateContext predicate() {
+			return getRuleContext(PredicateContext.class,0);
+		}
+		public AdverbialContext adverbial() {
+			return getRuleContext(AdverbialContext.class,0);
+		}
+		public AttributeContext attribute() {
+			return getRuleContext(AttributeContext.class,0);
+		}
+		public ObjectContext object() {
+			return getRuleContext(ObjectContext.class,0);
+		}
+		public Predicate_adverbial_attribute_object_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_predicate_adverbial_attribute_object_stmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_adverbial_attribute_object_stmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Predicate_adverbial_attribute_object_stmtContext predicate_adverbial_attribute_object_stmt() throws RecognitionException {
+		Predicate_adverbial_attribute_object_stmtContext _localctx = new Predicate_adverbial_attribute_object_stmtContext(_ctx, getState());
+		enterRule(_localctx, 16, RULE_predicate_adverbial_attribute_object_stmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(119);
+			predicate();
+			setState(120);
+			adverbial();
+			setState(121);
+			attribute();
+			setState(122);
+			object();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Predicate_attribute_object_stmtContext extends ParserRuleContext {
+		public PredicateContext predicate() {
+			return getRuleContext(PredicateContext.class,0);
+		}
+		public AttributeContext attribute() {
+			return getRuleContext(AttributeContext.class,0);
+		}
+		public ObjectContext object() {
+			return getRuleContext(ObjectContext.class,0);
+		}
+		public Predicate_attribute_object_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_predicate_attribute_object_stmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_attribute_object_stmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Predicate_attribute_object_stmtContext predicate_attribute_object_stmt() throws RecognitionException {
+		Predicate_attribute_object_stmtContext _localctx = new Predicate_attribute_object_stmtContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_predicate_attribute_object_stmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(124);
+			predicate();
+			setState(125);
+			attribute();
+			setState(126);
+			object();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Subject_predicate_object_stmtContext extends ParserRuleContext {
+		public SubjectContext subject() {
+			return getRuleContext(SubjectContext.class,0);
+		}
+		public PredicateContext predicate() {
+			return getRuleContext(PredicateContext.class,0);
+		}
+		public ObjectContext object() {
+			return getRuleContext(ObjectContext.class,0);
+		}
+		public Subject_predicate_object_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_subject_predicate_object_stmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitSubject_predicate_object_stmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Subject_predicate_object_stmtContext subject_predicate_object_stmt() throws RecognitionException {
+		Subject_predicate_object_stmtContext _localctx = new Subject_predicate_object_stmtContext(_ctx, getState());
+		enterRule(_localctx, 20, RULE_subject_predicate_object_stmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(128);
+			subject();
+			setState(129);
+			predicate();
+			setState(130);
+			object();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Predicate_object_stmtContext extends ParserRuleContext {
+		public PredicateContext predicate() {
+			return getRuleContext(PredicateContext.class,0);
+		}
+		public ObjectContext object() {
+			return getRuleContext(ObjectContext.class,0);
+		}
+		public Predicate_object_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_predicate_object_stmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitPredicate_object_stmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Predicate_object_stmtContext predicate_object_stmt() throws RecognitionException {
+		Predicate_object_stmtContext _localctx = new Predicate_object_stmtContext(_ctx, getState());
+		enterRule(_localctx, 22, RULE_predicate_object_stmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(132);
+			predicate();
+			setState(133);
+			object();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class Compare_stmtContext extends ParserRuleContext {
+		public List<ObjectContext> object() {
+			return getRuleContexts(ObjectContext.class);
+		}
+		public ObjectContext object(int i) {
+			return getRuleContext(ObjectContext.class,i);
+		}
+		public CompareContext compare() {
+			return getRuleContext(CompareContext.class,0);
+		}
+		public Compare_stmtContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_compare_stmt; }
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof BLVisitor ) return ((BLVisitor<? extends T>)visitor).visitCompare_stmt(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final Compare_stmtContext compare_stmt() throws RecognitionException {
+		Compare_stmtContext _localctx = new Compare_stmtContext(_ctx, getState());
+		enterRule(_localctx, 24, RULE_compare_stmt);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(135);
+			object();
+			setState(136);
+			compare();
+			setState(137);
+			object();
 			}
 		}
 		catch (RecognitionException re) {
@@ -846,11 +903,11 @@ public class BLParser extends Parser {
 
 	public final SubjectContext subject() throws RecognitionException {
 		SubjectContext _localctx = new SubjectContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_subject);
+		enterRule(_localctx, 26, RULE_subject);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(132);
+			setState(139);
 			match(String);
 			}
 		}
@@ -866,14 +923,20 @@ public class BLParser extends Parser {
 	}
 
 	public static class ObjectContext extends ParserRuleContext {
-		public TerminalNode String() { return getToken(BLParser.String, 0); }
-		public NounContext noun() {
-			return getRuleContext(NounContext.class,0);
+		public List<TerminalNode> String() { return getTokens(BLParser.String); }
+		public TerminalNode String(int i) {
+			return getToken(BLParser.String, i);
 		}
-		public ObjectContext object() {
-			return getRuleContext(ObjectContext.class,0);
+		public List<NounContext> noun() {
+			return getRuleContexts(NounContext.class);
 		}
-		public TerminalNode Split() { return getToken(BLParser.Split, 0); }
+		public NounContext noun(int i) {
+			return getRuleContext(NounContext.class,i);
+		}
+		public List<TerminalNode> Split() { return getTokens(BLParser.Split); }
+		public TerminalNode Split(int i) {
+			return getToken(BLParser.Split, i);
+		}
 		public ObjectContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -886,26 +949,18 @@ public class BLParser extends Parser {
 	}
 
 	public final ObjectContext object() throws RecognitionException {
-		return object(0);
-	}
-
-	private ObjectContext object(int _p) throws RecognitionException {
-		ParserRuleContext _parentctx = _ctx;
-		int _parentState = getState();
-		ObjectContext _localctx = new ObjectContext(_ctx, _parentState);
-		ObjectContext _prevctx = _localctx;
-		int _startState = 26;
-		enterRecursionRule(_localctx, 26, RULE_object, _p);
+		ObjectContext _localctx = new ObjectContext(_ctx, getState());
+		enterRule(_localctx, 28, RULE_object);
+		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(137);
+			setState(143);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case String:
 				{
-				setState(135);
+				setState(141);
 				match(String);
 				}
 				break;
@@ -920,62 +975,53 @@ public class BLParser extends Parser {
 			case Today:
 			case Number:
 				{
-				setState(136);
+				setState(142);
 				noun();
 				}
 				break;
 			default:
 				throw new NoViableAltException(this);
 			}
-			_ctx.stop = _input.LT(-1);
-			setState(147);
+			setState(152);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
-			while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1 ) {
-					if ( _parseListeners!=null ) triggerExitRuleEvent();
-					_prevctx = _localctx;
-					{
-					{
-					_localctx = new ObjectContext(_parentctx, _parentState);
-					pushNewRecursionContext(_localctx, _startState, RULE_object);
-					setState(139);
-					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
-					setState(140);
-					match(Split);
-					setState(143);
-					_errHandler.sync(this);
-					switch (_input.LA(1)) {
-					case String:
-						{
-						setState(141);
-						match(String);
-						}
-						break;
-					case InputPart:
-					case OutputPart:
-					case Element:
-					case Amount:
-					case Data:
-					case Max:
-					case Min:
-					case Average:
-					case Today:
-					case Number:
-						{
-						setState(142);
-						noun();
-						}
-						break;
-					default:
-						throw new NoViableAltException(this);
-					}
-					}
-					} 
-				}
-				setState(149);
+			_la = _input.LA(1);
+			while (_la==Split) {
+				{
+				{
+				setState(145);
+				match(Split);
+				setState(148);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,11,_ctx);
+				switch (_input.LA(1)) {
+				case String:
+					{
+					setState(146);
+					match(String);
+					}
+					break;
+				case InputPart:
+				case OutputPart:
+				case Element:
+				case Amount:
+				case Data:
+				case Max:
+				case Min:
+				case Average:
+				case Today:
+				case Number:
+					{
+					setState(147);
+					noun();
+					}
+					break;
+				default:
+					throw new NoViableAltException(this);
+				}
+				}
+				}
+				setState(154);
+				_errHandler.sync(this);
+				_la = _input.LA(1);
 			}
 			}
 		}
@@ -985,7 +1031,7 @@ public class BLParser extends Parser {
 			_errHandler.recover(this, re);
 		}
 		finally {
-			unrollRecursionContexts(_parentctx);
+			exitRule();
 		}
 		return _localctx;
 	}
@@ -1007,11 +1053,11 @@ public class BLParser extends Parser {
 
 	public final PredicateContext predicate() throws RecognitionException {
 		PredicateContext _localctx = new PredicateContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_predicate);
+		enterRule(_localctx, 30, RULE_predicate);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(150);
+			setState(155);
 			verb();
 			}
 		}
@@ -1035,11 +1081,11 @@ public class BLParser extends Parser {
 		public TerminalNode String(int i) {
 			return getToken(BLParser.String, i);
 		}
-		public List<SimpleStmtContext> simpleStmt() {
-			return getRuleContexts(SimpleStmtContext.class);
+		public List<Compare_stmtContext> compare_stmt() {
+			return getRuleContexts(Compare_stmtContext.class);
 		}
-		public SimpleStmtContext simpleStmt(int i) {
-			return getRuleContext(SimpleStmtContext.class,i);
+		public Compare_stmtContext compare_stmt(int i) {
+			return getRuleContext(Compare_stmtContext.class,i);
 		}
 		public List<AdjectiveContext> adjective() {
 			return getRuleContexts(AdjectiveContext.class);
@@ -1066,12 +1112,12 @@ public class BLParser extends Parser {
 
 	public final AttributeContext attribute() throws RecognitionException {
 		AttributeContext _localctx = new AttributeContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_attribute);
+		enterRule(_localctx, 32, RULE_attribute);
 		try {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(159); 
+			setState(164); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -1079,35 +1125,35 @@ public class BLParser extends Parser {
 				case 1:
 					{
 					{
-					setState(156);
+					setState(161);
 					_errHandler.sync(this);
 					switch ( getInterpreter().adaptivePredict(_input,12,_ctx) ) {
 					case 1:
 						{
-						setState(152);
+						setState(157);
 						match(String);
 						}
 						break;
 					case 2:
 						{
-						setState(153);
-						simpleStmt();
+						setState(158);
+						compare_stmt();
 						}
 						break;
 					case 3:
 						{
-						setState(154);
+						setState(159);
 						adjective();
 						}
 						break;
 					case 4:
 						{
-						setState(155);
+						setState(160);
 						noun();
 						}
 						break;
 					}
-					setState(158);
+					setState(163);
 					match(De);
 					}
 					}
@@ -1115,7 +1161,7 @@ public class BLParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(161); 
+				setState(166); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,13,_ctx);
 			} while ( _alt!=2 && _alt!= ATN.INVALID_ALT_NUMBER );
@@ -1155,29 +1201,29 @@ public class BLParser extends Parser {
 
 	public final AdverbialContext adverbial() throws RecognitionException {
 		AdverbialContext _localctx = new AdverbialContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_adverbial);
+		enterRule(_localctx, 34, RULE_adverbial);
 		try {
-			setState(166);
+			setState(171);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,14,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(163);
+				setState(168);
 				place_adverbial();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(164);
+				setState(169);
 				time_adverbial();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(165);
+				setState(170);
 				common_adverbial();
 				}
 				break;
@@ -1211,21 +1257,21 @@ public class BLParser extends Parser {
 
 	public final Place_adverbialContext place_adverbial() throws RecognitionException {
 		Place_adverbialContext _localctx = new Place_adverbialContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_place_adverbial);
+		enterRule(_localctx, 36, RULE_place_adverbial);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(168);
+			setState(173);
 			match(At);
-			setState(169);
+			setState(174);
 			match(String);
-			setState(171);
+			setState(176);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==In) {
 				{
-				setState(170);
+				setState(175);
 				match(In);
 				}
 			}
@@ -1261,13 +1307,13 @@ public class BLParser extends Parser {
 
 	public final Time_adverbialContext time_adverbial() throws RecognitionException {
 		Time_adverbialContext _localctx = new Time_adverbialContext(_ctx, getState());
-		enterRule(_localctx, 36, RULE_time_adverbial);
+		enterRule(_localctx, 38, RULE_time_adverbial);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(173);
+			setState(178);
 			match(At);
-			setState(174);
+			setState(179);
 			time();
 			}
 		}
@@ -1298,13 +1344,13 @@ public class BLParser extends Parser {
 
 	public final Common_adverbialContext common_adverbial() throws RecognitionException {
 		Common_adverbialContext _localctx = new Common_adverbialContext(_ctx, getState());
-		enterRule(_localctx, 38, RULE_common_adverbial);
+		enterRule(_localctx, 40, RULE_common_adverbial);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(176);
+			setState(181);
 			match(String);
-			setState(177);
+			setState(182);
 			match(In);
 			}
 		}
@@ -1345,78 +1391,78 @@ public class BLParser extends Parser {
 
 	public final NounContext noun() throws RecognitionException {
 		NounContext _localctx = new NounContext(_ctx, getState());
-		enterRule(_localctx, 40, RULE_noun);
+		enterRule(_localctx, 42, RULE_noun);
 		try {
-			setState(189);
+			setState(194);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case InputPart:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(179);
+				setState(184);
 				match(InputPart);
 				}
 				break;
 			case OutputPart:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(180);
+				setState(185);
 				match(OutputPart);
 				}
 				break;
 			case Element:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(181);
+				setState(186);
 				match(Element);
 				}
 				break;
 			case Amount:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(182);
+				setState(187);
 				match(Amount);
 				}
 				break;
 			case Data:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(183);
+				setState(188);
 				match(Data);
 				}
 				break;
 			case Max:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(184);
+				setState(189);
 				match(Max);
 				}
 				break;
 			case Min:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(185);
+				setState(190);
 				match(Min);
 				}
 				break;
 			case Average:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(186);
+				setState(191);
 				match(Average);
 				}
 				break;
 			case Today:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(187);
+				setState(192);
 				time();
 				}
 				break;
 			case Number:
 				enterOuterAlt(_localctx, 10);
 				{
-				setState(188);
+				setState(193);
 				match(Number);
 				}
 				break;
@@ -1445,9 +1491,6 @@ public class BLParser extends Parser {
 		public TerminalNode Set() { return getToken(BLParser.Set, 0); }
 		public TerminalNode Count() { return getToken(BLParser.Count, 0); }
 		public TerminalNode CarryOut() { return getToken(BLParser.CarryOut, 0); }
-		public CompareContext compare() {
-			return getRuleContext(CompareContext.class,0);
-		}
 		public SortContext sort() {
 			return getRuleContext(SortContext.class,0);
 		}
@@ -1465,98 +1508,86 @@ public class BLParser extends Parser {
 
 	public final VerbContext verb() throws RecognitionException {
 		VerbContext _localctx = new VerbContext(_ctx, getState());
-		enterRule(_localctx, 42, RULE_verb);
+		enterRule(_localctx, 44, RULE_verb);
 		try {
-			setState(203);
+			setState(207);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case Show:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(191);
+				setState(196);
 				match(Show);
 				}
 				break;
 			case Execute:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(192);
+				setState(197);
 				match(Execute);
 				}
 				break;
 			case Get:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(193);
+				setState(198);
 				match(Get);
 				}
 				break;
 			case Find:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(194);
+				setState(199);
 				match(Find);
 				}
 				break;
 			case Remove:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(195);
+				setState(200);
 				match(Remove);
 				}
 				break;
 			case Qiu:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(196);
+				setState(201);
 				match(Qiu);
 				}
 				break;
 			case Set:
 				enterOuterAlt(_localctx, 7);
 				{
-				setState(197);
+				setState(202);
 				match(Set);
 				}
 				break;
 			case Count:
 				enterOuterAlt(_localctx, 8);
 				{
-				setState(198);
+				setState(203);
 				match(Count);
 				}
 				break;
 			case CarryOut:
 				enterOuterAlt(_localctx, 9);
 				{
-				setState(199);
+				setState(204);
 				match(CarryOut);
-				}
-				break;
-			case Equals:
-			case MoreThan:
-			case LessThan:
-			case NoEquals:
-			case NoMoreThan:
-			case NoLessThan:
-				enterOuterAlt(_localctx, 10);
-				{
-				setState(200);
-				compare();
 				}
 				break;
 			case SortAscending:
 			case SortDescending:
-				enterOuterAlt(_localctx, 11);
+				enterOuterAlt(_localctx, 10);
 				{
-				setState(201);
+				setState(205);
 				sort();
 				}
 				break;
 			case Group:
-				enterOuterAlt(_localctx, 12);
+				enterOuterAlt(_localctx, 11);
 				{
-				setState(202);
+				setState(206);
 				match(Group);
 				}
 				break;
@@ -1590,11 +1621,11 @@ public class BLParser extends Parser {
 
 	public final AdjectiveContext adjective() throws RecognitionException {
 		AdjectiveContext _localctx = new AdjectiveContext(_ctx, getState());
-		enterRule(_localctx, 44, RULE_adjective);
+		enterRule(_localctx, 46, RULE_adjective);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(205);
+			setState(209);
 			match(Old);
 			}
 		}
@@ -1624,11 +1655,11 @@ public class BLParser extends Parser {
 
 	public final NumeralsContext numerals() throws RecognitionException {
 		NumeralsContext _localctx = new NumeralsContext(_ctx, getState());
-		enterRule(_localctx, 46, RULE_numerals);
+		enterRule(_localctx, 48, RULE_numerals);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(207);
+			setState(211);
 			match(Number);
 			}
 		}
@@ -1658,11 +1689,11 @@ public class BLParser extends Parser {
 
 	public final QuantifiersContext quantifiers() throws RecognitionException {
 		QuantifiersContext _localctx = new QuantifiersContext(_ctx, getState());
-		enterRule(_localctx, 48, RULE_quantifiers);
+		enterRule(_localctx, 50, RULE_quantifiers);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(209);
+			setState(213);
 			match(Ge);
 			}
 		}
@@ -1692,11 +1723,11 @@ public class BLParser extends Parser {
 
 	public final TimeContext time() throws RecognitionException {
 		TimeContext _localctx = new TimeContext(_ctx, getState());
-		enterRule(_localctx, 50, RULE_time);
+		enterRule(_localctx, 52, RULE_time);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(211);
+			setState(215);
 			match(Today);
 			}
 		}
@@ -1731,12 +1762,12 @@ public class BLParser extends Parser {
 
 	public final CompareContext compare() throws RecognitionException {
 		CompareContext _localctx = new CompareContext(_ctx, getState());
-		enterRule(_localctx, 52, RULE_compare);
+		enterRule(_localctx, 54, RULE_compare);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(213);
+			setState(217);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << Equals) | (1L << MoreThan) | (1L << LessThan) | (1L << NoEquals) | (1L << NoMoreThan) | (1L << NoLessThan))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1775,12 +1806,12 @@ public class BLParser extends Parser {
 
 	public final SortContext sort() throws RecognitionException {
 		SortContext _localctx = new SortContext(_ctx, getState());
-		enterRule(_localctx, 54, RULE_sort);
+		enterRule(_localctx, 56, RULE_sort);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(215);
+			setState(219);
 			_la = _input.LA(1);
 			if ( !(_la==SortAscending || _la==SortDescending) ) {
 			_errHandler.recoverInline(this);
@@ -1803,93 +1834,79 @@ public class BLParser extends Parser {
 		return _localctx;
 	}
 
-	public boolean sempred(RuleContext _localctx, int ruleIndex, int predIndex) {
-		switch (ruleIndex) {
-		case 13:
-			return object_sempred((ObjectContext)_localctx, predIndex);
-		}
-		return true;
-	}
-	private boolean object_sempred(ObjectContext _localctx, int predIndex) {
-		switch (predIndex) {
-		case 0:
-			return precpred(_ctx, 1);
-		}
-		return true;
-	}
-
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3,\u00dc\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3,\u00e0\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
 		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\3\2\3\2\5\2=\n\2\6\2?\n\2\r\2"+
-		"\16\2@\3\3\3\3\5\3E\n\3\3\4\3\4\3\4\3\4\5\4K\n\4\3\5\3\5\3\5\3\5\3\5\3"+
-		"\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\t\3\t\3\t\3\t\5\ta\n\t\3"+
-		"\n\3\n\3\n\3\n\3\n\6\nh\n\n\r\n\16\ni\5\nl\n\n\3\n\3\n\5\np\n\n\3\13\3"+
-		"\13\3\13\3\13\3\13\3\13\5\13x\n\13\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\r\3\r"+
-		"\3\r\3\r\3\r\3\r\3\16\3\16\3\17\3\17\3\17\5\17\u008c\n\17\3\17\3\17\3"+
-		"\17\3\17\5\17\u0092\n\17\7\17\u0094\n\17\f\17\16\17\u0097\13\17\3\20\3"+
-		"\20\3\21\3\21\3\21\3\21\5\21\u009f\n\21\3\21\6\21\u00a2\n\21\r\21\16\21"+
-		"\u00a3\3\22\3\22\3\22\5\22\u00a9\n\22\3\23\3\23\3\23\5\23\u00ae\n\23\3"+
-		"\24\3\24\3\24\3\25\3\25\3\25\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3\26\3"+
-		"\26\3\26\5\26\u00c0\n\26\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27"+
-		"\3\27\3\27\3\27\5\27\u00ce\n\27\3\30\3\30\3\31\3\31\3\32\3\32\3\33\3\33"+
-		"\3\34\3\34\3\35\3\35\3\35\2\3\34\36\2\4\6\b\n\f\16\20\22\24\26\30\32\34"+
-		"\36 \"$&(*,.\60\62\64\668\2\4\3\2\17\24\3\2\f\r\2\u00eb\2>\3\2\2\2\4D"+
-		"\3\2\2\2\6J\3\2\2\2\bL\3\2\2\2\nQ\3\2\2\2\fU\3\2\2\2\16Y\3\2\2\2\20`\3"+
-		"\2\2\2\22b\3\2\2\2\24q\3\2\2\2\26y\3\2\2\2\30\u0080\3\2\2\2\32\u0086\3"+
-		"\2\2\2\34\u008b\3\2\2\2\36\u0098\3\2\2\2 \u00a1\3\2\2\2\"\u00a8\3\2\2"+
-		"\2$\u00aa\3\2\2\2&\u00af\3\2\2\2(\u00b2\3\2\2\2*\u00bf\3\2\2\2,\u00cd"+
-		"\3\2\2\2.\u00cf\3\2\2\2\60\u00d1\3\2\2\2\62\u00d3\3\2\2\2\64\u00d5\3\2"+
-		"\2\2\66\u00d7\3\2\2\28\u00d9\3\2\2\2:<\5\4\3\2;=\7\'\2\2<;\3\2\2\2<=\3"+
-		"\2\2\2=?\3\2\2\2>:\3\2\2\2?@\3\2\2\2@>\3\2\2\2@A\3\2\2\2A\3\3\2\2\2BE"+
-		"\5\6\4\2CE\5\20\t\2DB\3\2\2\2DC\3\2\2\2E\5\3\2\2\2FK\5\f\7\2GK\5\n\6\2"+
-		"HK\5\b\5\2IK\5\16\b\2JF\3\2\2\2JG\3\2\2\2JH\3\2\2\2JI\3\2\2\2K\7\3\2\2"+
-		"\2LM\5\36\20\2MN\5\"\22\2NO\5 \21\2OP\5\34\17\2P\t\3\2\2\2QR\5\36\20\2"+
-		"RS\5 \21\2ST\5\34\17\2T\13\3\2\2\2UV\5\32\16\2VW\5\36\20\2WX\5\34\17\2"+
-		"X\r\3\2\2\2YZ\5\36\20\2Z[\5\34\17\2[\17\3\2\2\2\\a\5\22\n\2]a\5\24\13"+
-		"\2^a\5\26\f\2_a\5\30\r\2`\\\3\2\2\2`]\3\2\2\2`^\3\2\2\2`_\3\2\2\2a\21"+
-		"\3\2\2\2bk\5\16\b\2cd\7&\2\2dg\7!\2\2ef\7&\2\2fh\5\f\7\2ge\3\2\2\2hi\3"+
-		"\2\2\2ig\3\2\2\2ij\3\2\2\2jl\3\2\2\2kc\3\2\2\2kl\3\2\2\2lo\3\2\2\2mn\7"+
-		"&\2\2np\5\16\b\2om\3\2\2\2op\3\2\2\2p\23\3\2\2\2qr\7\t\2\2rs\7*\2\2sw"+
-		"\7\17\2\2tx\5\4\3\2ux\7*\2\2vx\7)\2\2wt\3\2\2\2wu\3\2\2\2wv\3\2\2\2x\25"+
-		"\3\2\2\2yz\7$\2\2z{\7*\2\2{|\7#\2\2|}\7*\2\2}~\7\13\2\2~\177\58\35\2\177"+
-		"\27\3\2\2\2\u0080\u0081\7#\2\2\u0081\u0082\7*\2\2\u0082\u0083\7$\2\2\u0083"+
-		"\u0084\7*\2\2\u0084\u0085\7\16\2\2\u0085\31\3\2\2\2\u0086\u0087\7*\2\2"+
-		"\u0087\33\3\2\2\2\u0088\u0089\b\17\1\2\u0089\u008c\7*\2\2\u008a\u008c"+
-		"\5*\26\2\u008b\u0088\3\2\2\2\u008b\u008a\3\2\2\2\u008c\u0095\3\2\2\2\u008d"+
-		"\u008e\f\3\2\2\u008e\u0091\7(\2\2\u008f\u0092\7*\2\2\u0090\u0092\5*\26"+
-		"\2\u0091\u008f\3\2\2\2\u0091\u0090\3\2\2\2\u0092\u0094\3\2\2\2\u0093\u008d"+
-		"\3\2\2\2\u0094\u0097\3\2\2\2\u0095\u0093\3\2\2\2\u0095\u0096\3\2\2\2\u0096"+
-		"\35\3\2\2\2\u0097\u0095\3\2\2\2\u0098\u0099\5,\27\2\u0099\37\3\2\2\2\u009a"+
-		"\u009f\7*\2\2\u009b\u009f\5\6\4\2\u009c\u009f\5.\30\2\u009d\u009f\5*\26"+
-		"\2\u009e\u009a\3\2\2\2\u009e\u009b\3\2\2\2\u009e\u009c\3\2\2\2\u009e\u009d"+
-		"\3\2\2\2\u009f\u00a0\3\2\2\2\u00a0\u00a2\7 \2\2\u00a1\u009e\3\2\2\2\u00a2"+
-		"\u00a3\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a4\3\2\2\2\u00a4!\3\2\2\2"+
-		"\u00a5\u00a9\5$\23\2\u00a6\u00a9\5&\24\2\u00a7\u00a9\5(\25\2\u00a8\u00a5"+
-		"\3\2\2\2\u00a8\u00a6\3\2\2\2\u00a8\u00a7\3\2\2\2\u00a9#\3\2\2\2\u00aa"+
-		"\u00ab\7%\2\2\u00ab\u00ad\7*\2\2\u00ac\u00ae\7\"\2\2\u00ad\u00ac\3\2\2"+
-		"\2\u00ad\u00ae\3\2\2\2\u00ae%\3\2\2\2\u00af\u00b0\7%\2\2\u00b0\u00b1\5"+
-		"\64\33\2\u00b1\'\3\2\2\2\u00b2\u00b3\7*\2\2\u00b3\u00b4\7\"\2\2\u00b4"+
-		")\3\2\2\2\u00b5\u00c0\7\25\2\2\u00b6\u00c0\7\26\2\2\u00b7\u00c0\7\27\2"+
-		"\2\u00b8\u00c0\7\30\2\2\u00b9\u00c0\7\31\2\2\u00ba\u00c0\7\32\2\2\u00bb"+
-		"\u00c0\7\33\2\2\u00bc\u00c0\7\34\2\2\u00bd\u00c0\5\64\33\2\u00be\u00c0"+
-		"\7)\2\2\u00bf\u00b5\3\2\2\2\u00bf\u00b6\3\2\2\2\u00bf\u00b7\3\2\2\2\u00bf"+
-		"\u00b8\3\2\2\2\u00bf\u00b9\3\2\2\2\u00bf\u00ba\3\2\2\2\u00bf\u00bb\3\2"+
-		"\2\2\u00bf\u00bc\3\2\2\2\u00bf\u00bd\3\2\2\2\u00bf\u00be\3\2\2\2\u00c0"+
-		"+\3\2\2\2\u00c1\u00ce\7\3\2\2\u00c2\u00ce\7\4\2\2\u00c3\u00ce\7\5\2\2"+
-		"\u00c4\u00ce\7\6\2\2\u00c5\u00ce\7\7\2\2\u00c6\u00ce\7\b\2\2\u00c7\u00ce"+
-		"\7\t\2\2\u00c8\u00ce\7\n\2\2\u00c9\u00ce\7\13\2\2\u00ca\u00ce\5\66\34"+
-		"\2\u00cb\u00ce\58\35\2\u00cc\u00ce\7\16\2\2\u00cd\u00c1\3\2\2\2\u00cd"+
-		"\u00c2\3\2\2\2\u00cd\u00c3\3\2\2\2\u00cd\u00c4\3\2\2\2\u00cd\u00c5\3\2"+
-		"\2\2\u00cd\u00c6\3\2\2\2\u00cd\u00c7\3\2\2\2\u00cd\u00c8\3\2\2\2\u00cd"+
-		"\u00c9\3\2\2\2\u00cd\u00ca\3\2\2\2\u00cd\u00cb\3\2\2\2\u00cd\u00cc\3\2"+
-		"\2\2\u00ce-\3\2\2\2\u00cf\u00d0\7\37\2\2\u00d0/\3\2\2\2\u00d1\u00d2\7"+
-		")\2\2\u00d2\61\3\2\2\2\u00d3\u00d4\7\36\2\2\u00d4\63\3\2\2\2\u00d5\u00d6"+
-		"\7\35\2\2\u00d6\65\3\2\2\2\u00d7\u00d8\t\2\2\2\u00d8\67\3\2\2\2\u00d9"+
-		"\u00da\t\3\2\2\u00da9\3\2\2\2\24<@DJ`ikow\u008b\u0091\u0095\u009e\u00a3"+
-		"\u00a8\u00ad\u00bf\u00cd";
+		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\3\2\3\2\5\2?\n\2\6"+
+		"\2A\n\2\r\2\16\2B\3\3\3\3\5\3G\n\3\3\4\3\4\3\4\3\4\5\4M\n\4\3\5\3\5\3"+
+		"\5\3\5\3\5\5\5T\n\5\3\6\3\6\3\6\3\6\3\6\6\6[\n\6\r\6\16\6\\\5\6_\n\6\3"+
+		"\6\3\6\5\6c\n\6\3\7\3\7\3\7\3\7\3\7\3\7\5\7k\n\7\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13"+
+		"\3\f\3\f\3\f\3\f\3\r\3\r\3\r\3\16\3\16\3\16\3\16\3\17\3\17\3\20\3\20\5"+
+		"\20\u0092\n\20\3\20\3\20\3\20\5\20\u0097\n\20\7\20\u0099\n\20\f\20\16"+
+		"\20\u009c\13\20\3\21\3\21\3\22\3\22\3\22\3\22\5\22\u00a4\n\22\3\22\6\22"+
+		"\u00a7\n\22\r\22\16\22\u00a8\3\23\3\23\3\23\5\23\u00ae\n\23\3\24\3\24"+
+		"\3\24\5\24\u00b3\n\24\3\25\3\25\3\25\3\26\3\26\3\26\3\27\3\27\3\27\3\27"+
+		"\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u00c5\n\27\3\30\3\30\3\30\3\30\3\30"+
+		"\3\30\3\30\3\30\3\30\3\30\3\30\5\30\u00d2\n\30\3\31\3\31\3\32\3\32\3\33"+
+		"\3\33\3\34\3\34\3\35\3\35\3\36\3\36\3\36\2\2\37\2\4\6\b\n\f\16\20\22\24"+
+		"\26\30\32\34\36 \"$&(*,.\60\62\64\668:\2\4\3\2\17\24\3\2\f\r\2\u00ee\2"+
+		"@\3\2\2\2\4F\3\2\2\2\6L\3\2\2\2\bS\3\2\2\2\nU\3\2\2\2\fd\3\2\2\2\16l\3"+
+		"\2\2\2\20s\3\2\2\2\22y\3\2\2\2\24~\3\2\2\2\26\u0082\3\2\2\2\30\u0086\3"+
+		"\2\2\2\32\u0089\3\2\2\2\34\u008d\3\2\2\2\36\u0091\3\2\2\2 \u009d\3\2\2"+
+		"\2\"\u00a6\3\2\2\2$\u00ad\3\2\2\2&\u00af\3\2\2\2(\u00b4\3\2\2\2*\u00b7"+
+		"\3\2\2\2,\u00c4\3\2\2\2.\u00d1\3\2\2\2\60\u00d3\3\2\2\2\62\u00d5\3\2\2"+
+		"\2\64\u00d7\3\2\2\2\66\u00d9\3\2\2\28\u00db\3\2\2\2:\u00dd\3\2\2\2<>\5"+
+		"\4\3\2=?\7\'\2\2>=\3\2\2\2>?\3\2\2\2?A\3\2\2\2@<\3\2\2\2AB\3\2\2\2B@\3"+
+		"\2\2\2BC\3\2\2\2C\3\3\2\2\2DG\5\b\5\2EG\5\6\4\2FD\3\2\2\2FE\3\2\2\2G\5"+
+		"\3\2\2\2HM\5\n\6\2IM\5\f\7\2JM\5\16\b\2KM\5\20\t\2LH\3\2\2\2LI\3\2\2\2"+
+		"LJ\3\2\2\2LK\3\2\2\2M\7\3\2\2\2NT\5\26\f\2OT\5\24\13\2PT\5\22\n\2QT\5"+
+		"\30\r\2RT\5\32\16\2SN\3\2\2\2SO\3\2\2\2SP\3\2\2\2SQ\3\2\2\2SR\3\2\2\2"+
+		"T\t\3\2\2\2U^\5\30\r\2VW\7&\2\2WZ\7!\2\2XY\7&\2\2Y[\5\32\16\2ZX\3\2\2"+
+		"\2[\\\3\2\2\2\\Z\3\2\2\2\\]\3\2\2\2]_\3\2\2\2^V\3\2\2\2^_\3\2\2\2_b\3"+
+		"\2\2\2`a\7&\2\2ac\5\30\r\2b`\3\2\2\2bc\3\2\2\2c\13\3\2\2\2de\7\t\2\2e"+
+		"f\7*\2\2fj\7\17\2\2gk\5\4\3\2hk\7*\2\2ik\7)\2\2jg\3\2\2\2jh\3\2\2\2ji"+
+		"\3\2\2\2k\r\3\2\2\2lm\7$\2\2mn\7*\2\2no\7#\2\2op\7*\2\2pq\7\13\2\2qr\5"+
+		":\36\2r\17\3\2\2\2st\7#\2\2tu\7*\2\2uv\7$\2\2vw\7*\2\2wx\7\16\2\2x\21"+
+		"\3\2\2\2yz\5 \21\2z{\5$\23\2{|\5\"\22\2|}\5\36\20\2}\23\3\2\2\2~\177\5"+
+		" \21\2\177\u0080\5\"\22\2\u0080\u0081\5\36\20\2\u0081\25\3\2\2\2\u0082"+
+		"\u0083\5\34\17\2\u0083\u0084\5 \21\2\u0084\u0085\5\36\20\2\u0085\27\3"+
+		"\2\2\2\u0086\u0087\5 \21\2\u0087\u0088\5\36\20\2\u0088\31\3\2\2\2\u0089"+
+		"\u008a\5\36\20\2\u008a\u008b\58\35\2\u008b\u008c\5\36\20\2\u008c\33\3"+
+		"\2\2\2\u008d\u008e\7*\2\2\u008e\35\3\2\2\2\u008f\u0092\7*\2\2\u0090\u0092"+
+		"\5,\27\2\u0091\u008f\3\2\2\2\u0091\u0090\3\2\2\2\u0092\u009a\3\2\2\2\u0093"+
+		"\u0096\7(\2\2\u0094\u0097\7*\2\2\u0095\u0097\5,\27\2\u0096\u0094\3\2\2"+
+		"\2\u0096\u0095\3\2\2\2\u0097\u0099\3\2\2\2\u0098\u0093\3\2\2\2\u0099\u009c"+
+		"\3\2\2\2\u009a\u0098\3\2\2\2\u009a\u009b\3\2\2\2\u009b\37\3\2\2\2\u009c"+
+		"\u009a\3\2\2\2\u009d\u009e\5.\30\2\u009e!\3\2\2\2\u009f\u00a4\7*\2\2\u00a0"+
+		"\u00a4\5\32\16\2\u00a1\u00a4\5\60\31\2\u00a2\u00a4\5,\27\2\u00a3\u009f"+
+		"\3\2\2\2\u00a3\u00a0\3\2\2\2\u00a3\u00a1\3\2\2\2\u00a3\u00a2\3\2\2\2\u00a4"+
+		"\u00a5\3\2\2\2\u00a5\u00a7\7 \2\2\u00a6\u00a3\3\2\2\2\u00a7\u00a8\3\2"+
+		"\2\2\u00a8\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9#\3\2\2\2\u00aa\u00ae"+
+		"\5&\24\2\u00ab\u00ae\5(\25\2\u00ac\u00ae\5*\26\2\u00ad\u00aa\3\2\2\2\u00ad"+
+		"\u00ab\3\2\2\2\u00ad\u00ac\3\2\2\2\u00ae%\3\2\2\2\u00af\u00b0\7%\2\2\u00b0"+
+		"\u00b2\7*\2\2\u00b1\u00b3\7\"\2\2\u00b2\u00b1\3\2\2\2\u00b2\u00b3\3\2"+
+		"\2\2\u00b3\'\3\2\2\2\u00b4\u00b5\7%\2\2\u00b5\u00b6\5\66\34\2\u00b6)\3"+
+		"\2\2\2\u00b7\u00b8\7*\2\2\u00b8\u00b9\7\"\2\2\u00b9+\3\2\2\2\u00ba\u00c5"+
+		"\7\25\2\2\u00bb\u00c5\7\26\2\2\u00bc\u00c5\7\27\2\2\u00bd\u00c5\7\30\2"+
+		"\2\u00be\u00c5\7\31\2\2\u00bf\u00c5\7\32\2\2\u00c0\u00c5\7\33\2\2\u00c1"+
+		"\u00c5\7\34\2\2\u00c2\u00c5\5\66\34\2\u00c3\u00c5\7)\2\2\u00c4\u00ba\3"+
+		"\2\2\2\u00c4\u00bb\3\2\2\2\u00c4\u00bc\3\2\2\2\u00c4\u00bd\3\2\2\2\u00c4"+
+		"\u00be\3\2\2\2\u00c4\u00bf\3\2\2\2\u00c4\u00c0\3\2\2\2\u00c4\u00c1\3\2"+
+		"\2\2\u00c4\u00c2\3\2\2\2\u00c4\u00c3\3\2\2\2\u00c5-\3\2\2\2\u00c6\u00d2"+
+		"\7\3\2\2\u00c7\u00d2\7\4\2\2\u00c8\u00d2\7\5\2\2\u00c9\u00d2\7\6\2\2\u00ca"+
+		"\u00d2\7\7\2\2\u00cb\u00d2\7\b\2\2\u00cc\u00d2\7\t\2\2\u00cd\u00d2\7\n"+
+		"\2\2\u00ce\u00d2\7\13\2\2\u00cf\u00d2\5:\36\2\u00d0\u00d2\7\16\2\2\u00d1"+
+		"\u00c6\3\2\2\2\u00d1\u00c7\3\2\2\2\u00d1\u00c8\3\2\2\2\u00d1\u00c9\3\2"+
+		"\2\2\u00d1\u00ca\3\2\2\2\u00d1\u00cb\3\2\2\2\u00d1\u00cc\3\2\2\2\u00d1"+
+		"\u00cd\3\2\2\2\u00d1\u00ce\3\2\2\2\u00d1\u00cf\3\2\2\2\u00d1\u00d0\3\2"+
+		"\2\2\u00d2/\3\2\2\2\u00d3\u00d4\7\37\2\2\u00d4\61\3\2\2\2\u00d5\u00d6"+
+		"\7)\2\2\u00d6\63\3\2\2\2\u00d7\u00d8\7\36\2\2\u00d8\65\3\2\2\2\u00d9\u00da"+
+		"\7\35\2\2\u00da\67\3\2\2\2\u00db\u00dc\t\2\2\2\u00dc9\3\2\2\2\u00dd\u00de"+
+		"\t\3\2\2\u00de;\3\2\2\2\24>BFLS\\^bj\u0091\u0096\u009a\u00a3\u00a8\u00ad"+
+		"\u00b2\u00c4\u00d1";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

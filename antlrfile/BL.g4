@@ -4,10 +4,28 @@ script: (stmt Dot?)+ ;
 //语句：简单句 | 复杂句；
 stmt: simpleStmt | complexStmt;
 
+//复杂句:运行工具|设定句
+complexStmt:runToolStmt|setStmt|sortStmt|groupStmt;
+
 simpleStmt:subject_predicate_object_stmt|
 predicate_attribute_object_stmt|
 predicate_adverbial_attribute_object_stmt|
-predicate_object_stmt;
+predicate_object_stmt|
+compare_stmt;
+
+
+// 执行工具: “执行” <工具名称> [“其中” {<输入部件> “=” （<常量> | <另一个工具的输出部件> | <输出部件的某个属性>）} ] [ “,得到” {<输出部件> }]
+runToolStmt:predicate_object_stmt (Comma Among (Comma compare_stmt)+ )? (Comma predicate_object_stmt)?;
+
+//设定句:“设定” <术语> “=” (<有明确输出的句子> | <常量> | <输出部件> )
+setStmt:Set String Equals (stmt | String | Number );
+
+//排序句:“根据” <属性名词> “将” <输出部件> “进行” （“升序排序”|“降序排序”）
+sortStmt:According String Jiang String CarryOut sort;
+
+//分组句:“将” <数据保存的名称> “按照” <属性名称> “进行分组”
+groupStmt: Jiang String According String Group;
+
 
 //句子结构的划分
 //谓状定宾句：谓语 状语  定语 宾语
@@ -21,22 +39,9 @@ subject_predicate_object_stmt:subject predicate object;
 //谓宾句：谓语 宾语
 predicate_object_stmt:predicate object;
 
+//比较句： 宾语 比较词 宾语
+compare_stmt: object compare object;
 
-
-//复杂句:运行工具|设定句
-complexStmt:runToolStmt|setStmt|sortStmt|groupStmt;
-
-// 执行工具: “执行” <工具名称> [“其中” {<输入部件> “=” （<常量> | <另一个工具的输出部件> | <输出部件的某个属性>）} ] [ “,得到” {<输出部件> }]
-runToolStmt:predicate_object_stmt (Comma Among (Comma subject_predicate_object_stmt)+ )? (Comma predicate_object_stmt)?;
-
-//设定句:“设定” <术语> “=” (<有明确输出的句子> | <常量> | <输出部件> )
-setStmt:Set String Equals (stmt | String | Number );
-
-//排序句:“根据” <属性名词> “将” <输出部件> “进行” （“升序排序”|“降序排序”）
-sortStmt:According String Jiang String CarryOut sort;
-
-//分组句:“将” <数据保存的名称> “按照” <属性名称> “进行分组”
-groupStmt: Jiang String According String Group;
 
 //句子成分的划分
 //主语 ： 用户名称/属性名称
@@ -49,7 +54,7 @@ object:(String|noun) (Split (String|noun))*;
 //谓语:动词
 predicate:verb;
 //定语：对象名称|形容词|条件判断的句子
-attribute:((String|simpleStmt|adjective|noun) De)+;
+attribute:((String|compare_stmt|adjective|noun) De)+;
 //状语:时间状语|地点状语|通用状语
 adverbial:place_adverbial|time_adverbial|common_adverbial;
 
@@ -70,7 +75,7 @@ common_adverbial:String In;
 // 名词：
 noun:InputPart|OutputPart|Element|Amount|Data|Max|Min|Average|time|Number;
 // 动词：
-verb:Show|Execute|Get|Find|Remove|Qiu|Set|Count|CarryOut|compare|sort|Group;
+verb:Show|Execute|Get|Find|Remove|Qiu|Set|Count|CarryOut|sort|Group;
 // 形容词：
 adjective:Old;
 // 数词：

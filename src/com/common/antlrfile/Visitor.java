@@ -1,5 +1,6 @@
 package com.common.antlrfile;
 
+import com.alibaba.fastjson.JSONObject;
 import com.common.node.Node;
 import com.common.node.element.adverbial.Adverbial;
 import com.common.node.element.adverbial.commonadverbial.CommonAdverbial1;
@@ -16,10 +17,7 @@ import com.common.node.element.subject.Subject1;
 import com.common.node.script.Script;
 import com.common.node.script.Stmt;
 import com.common.node.sentence.complex.*;
-import com.common.node.sentence.simple.SimpleStmt1;
-import com.common.node.sentence.simple.SimpleStmt2;
-import com.common.node.sentence.simple.SimpleStmt3;
-import com.common.node.sentence.simple.SimpleStmt4;
+import com.common.node.sentence.simple.*;
 import com.common.node.word.Num;
 import com.common.node.word.Str;
 import com.common.node.word.Word;
@@ -28,7 +26,7 @@ import com.common.node.word.real.noun.*;
 import com.common.node.word.real.noun.time.Today;
 import com.common.node.word.real.quantifiers.Ge;
 import com.common.node.word.real.verb.*;
-import com.common.node.word.real.verb.compare.*;
+import com.common.node.word.real.compare.*;
 import com.common.node.word.real.verb.sort.SortAscending;
 import com.common.node.word.real.verb.sort.SortDescending;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -92,6 +90,8 @@ public class Visitor implements BLVisitor<Node> {
             list.add(stmt);
         }
         script.lists = list;
+
+        script.text = ctx.getText();
         return script;
     }
 
@@ -114,6 +114,7 @@ public class Visitor implements BLVisitor<Node> {
         simpleStmt1.attribute = (Attribute) ctx.attribute().accept(this);
         simpleStmt1.object = (Object) ctx.object().accept(this);
 
+        simpleStmt1.text = ctx.getText();
         return simpleStmt1;
     }
 
@@ -125,6 +126,7 @@ public class Visitor implements BLVisitor<Node> {
         simpleStmt2.attribute = (Attribute) ctx.attribute().accept(this);
         simpleStmt2.object = (Object) ctx.object().accept(this);
 
+        simpleStmt2.text = ctx.getText();
         return simpleStmt2;
     }
 
@@ -136,6 +138,7 @@ public class Visitor implements BLVisitor<Node> {
         simpleStmt3.predicate = (Predicate) ctx.predicate().accept(this);
         simpleStmt3.object = (Object) ctx.object().accept(this);
 
+        simpleStmt3.text = ctx.getText();
         return simpleStmt3;
     }
 
@@ -146,7 +149,18 @@ public class Visitor implements BLVisitor<Node> {
         simpleStmt4.predicate = (Predicate) ctx.predicate().accept(this);
         simpleStmt4.object = (Object) ctx.object().accept(this);
 
+        simpleStmt4.text = ctx.getText();
         return simpleStmt4;
+    }
+
+    @Override
+    public Node visitCompare_stmt(BLParser.Compare_stmtContext ctx) {
+        CompareStmt compareStmt = new CompareStmt();
+        compareStmt.first = (Object) ctx.object(0).accept(this);
+        compareStmt.second = (Object) ctx.object(1).accept(this);
+        compareStmt.compare = (Compare) ctx.compare().accept(this);
+        compareStmt.text = ctx.getText();
+        return compareStmt;
     }
 
     @Override
@@ -162,13 +176,14 @@ public class Visitor implements BLVisitor<Node> {
         if(predicate_object_stmtContexts.size()>1){
             runToolStmt.saveStmt = (SimpleStmt4) predicate_object_stmtContexts.get(1).accept(this);
         }
-        List<BLParser.Subject_predicate_object_stmtContext> subject_predicate_object_stmtContexts = ctx.subject_predicate_object_stmt();
-        if(subject_predicate_object_stmtContexts.size()>0){
+        List<BLParser.Compare_stmtContext> compare_stmtContexts = ctx.compare_stmt();
+        if(compare_stmtContexts.size()>0){
             runToolStmt.conditionList = new LinkedList<>();
-            for (BLParser.Subject_predicate_object_stmtContext context: subject_predicate_object_stmtContexts){
-                runToolStmt.conditionList.add((SimpleStmt3)context.accept(this));
+            for (BLParser.Compare_stmtContext context: compare_stmtContexts){
+                runToolStmt.conditionList.add((Compare)context.accept(this));
             }
         }
+        runToolStmt.text = ctx.getText();
         return runToolStmt;
     }
 
@@ -191,7 +206,7 @@ public class Visitor implements BLVisitor<Node> {
             setStmt.value = ctx.String().get(1).getText();
             setStmt.enumType = SetValueEnum.STRING;
         }
-
+        setStmt.text = ctx.getText();
         return setStmt;
     }
 
@@ -201,6 +216,7 @@ public class Visitor implements BLVisitor<Node> {
         sortStmt.para = ctx.String(0).getText();
         sortStmt.objName = ctx.String(1).getText();
         sortStmt.type = ctx.sort().getText();
+        sortStmt.text = ctx.getText();
         return sortStmt;
     }
 
@@ -209,6 +225,7 @@ public class Visitor implements BLVisitor<Node> {
         GroupStmt groupStmt = new GroupStmt();
         groupStmt.para = ctx.String(0).getText();
         groupStmt.objName = ctx.String(1).getText();
+        groupStmt.text = ctx.getText();
         return groupStmt;
     }
 
@@ -216,17 +233,21 @@ public class Visitor implements BLVisitor<Node> {
     public Node visitSubject(BLParser.SubjectContext ctx) {
         Subject1 subject1 = new Subject1();
         subject1.string = ctx.String().getText();
+        subject1.text = ctx.getText();
         return subject1;
     }
 
     @Override
     public Node visitObject(BLParser.ObjectContext ctx) {
         Object1 object1 = new Object1();
+        object1.list.add(ctx.getChild(0).accept(this));
         int num = ctx.getChildCount();
-        for(int i=0;i+1<num;i=i+2){
-            object1.list.add(ctx.getChild(i).accept(this));
-            object1.splits.add(ctx.getChild(i+1).getText());
+        for(int i=1;i+1<num;i=i+2){
+            object1.list.add(ctx.getChild(i+1).accept(this));
+            object1.splits.add(ctx.getChild(i).getText());
         }
+
+        object1.text = ctx.getText();
         return object1;
     }
 
@@ -234,6 +255,7 @@ public class Visitor implements BLVisitor<Node> {
     public Node visitPredicate(BLParser.PredicateContext ctx) {
         Predicate1 predicate1 = new Predicate1();
         predicate1.verb = (Verb) ctx.verb().accept(this);
+        predicate1.text = ctx.getText();
         return predicate1;
     }
 
@@ -244,6 +266,7 @@ public class Visitor implements BLVisitor<Node> {
         for(int i=0;i+1<num;i=i+2){
             attribute1.list.add(ctx.getChild(i).accept(this));
         }
+        attribute1.text = ctx.getText();
         return attribute1;
     }
 
@@ -256,6 +279,7 @@ public class Visitor implements BLVisitor<Node> {
     public Node visitPlace_adverbial(BLParser.Place_adverbialContext ctx) {
         PlaceAdverbial1 placeAdverbial1 = new PlaceAdverbial1();
         placeAdverbial1.string = ctx.String().getText();
+        placeAdverbial1.text = ctx.getText();
         return placeAdverbial1;
     }
 
@@ -263,6 +287,7 @@ public class Visitor implements BLVisitor<Node> {
     public Node visitTime_adverbial(BLParser.Time_adverbialContext ctx) {
         TimeAdverbial1 timeAdverbial1 = new TimeAdverbial1();
         timeAdverbial1.time = ctx.time().accept(this);
+        timeAdverbial1.text = ctx.getText();
         return timeAdverbial1;
     }
 
@@ -270,6 +295,7 @@ public class Visitor implements BLVisitor<Node> {
     public Node visitCommon_adverbial(BLParser.Common_adverbialContext ctx) {
         CommonAdverbial1 commonAdverbial1 = new CommonAdverbial1();
         commonAdverbial1.string = ctx.String().getText();
+        commonAdverbial1.text = ctx.getText();
         return commonAdverbial1;
     }
 
@@ -300,7 +326,9 @@ public class Visitor implements BLVisitor<Node> {
 
     @Override
     public Node visitTime(BLParser.TimeContext ctx) {
-        return new Today();
+        Today today = new Today();
+        today.text = ctx.getText();
+        return today;
     }
 
     @Override
@@ -326,13 +354,19 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitTerminal(TerminalNode terminalNode) {
         //从map中找到对应的实例
+        String text = terminalNode.getText();
+        Word word;
         if(wordMap.containsKey(terminalNode.getText())){
-            return wordMap.get(terminalNode.getText());
+            Word word0 = wordMap.get(terminalNode.getText());
+            JSONObject jsonObject = (JSONObject) JSONObject.toJSON(word0);
+            word = jsonObject.toJavaObject(word0.getClass());
         }else if(terminalNode.getText().matches("[0-9]+")){
-            return new Num();
-        }else{
-            return new Str();
+            word = new Num();
+        } else {
+            word = new Str();
         }
+        word.text = text;
+        return word;
     }
 
     @Override

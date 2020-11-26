@@ -56,13 +56,22 @@ public class Environment {
     }
 
     /**
+     * 清空栈
+     */
+    public void cleanStack(){
+        while (this.scriptEnvironment.size()>this.place){
+            this.scriptEnvironment.remove(this.place);
+        }
+    }
+
+    /**
      * 在语境中，查找某一个词所对应的具体内容
      * 查找顺序: 单句环境-全局环境-帮区环境-机构环境
      * @param key 词
      * @return
      */
-    public Object find(String key){
-        Object res = null;
+    public BLObj find(String key){
+        BLObj res = null;
         res = findInStack(key);
         if(res != null){
             return res;
@@ -92,7 +101,7 @@ public class Environment {
      * @param type 选择的环境
      * @return
      */
-    public Object find(String key, EnvironmentType type){
+    public BLObj find(String key, EnvironmentType type){
         switch (type){
             case ORGANIZATION:
                 return findInOrganization(key);
@@ -155,11 +164,11 @@ public class Environment {
      * @param key
      * @return
      */
-    private Object findInStack(String key){
+    private BLObj findInStack(String key){
         for(int i=this.scriptEnvironment.size()-1;i>=this.place;i--){
             BLObj blObj = this.scriptEnvironment.get(i);
             if(blObj.key.equals(key)){
-                return blObj.value;
+                return blObj;
             }
         }
         return null;
@@ -170,11 +179,11 @@ public class Environment {
      * @param key
      * @return
      */
-    private Object findInMemeory(String key){
+    private BLObj findInMemeory(String key){
         for(int i=0;i<this.place;i++){
             BLObj blObj = this.scriptEnvironment.get(i);
             if(blObj.key.equals(key)){
-                return blObj.value;
+                return blObj;
             }
         }
         return null;
@@ -185,10 +194,10 @@ public class Environment {
      * @param key
      * @return
      */
-    private Object findInBand(String key){
+    private BLObj findInBand(String key){
         for(BLObj blObj : this.band.things){
             if(blObj.key.equals(key)){
-                return blObj.value;
+                return blObj;
             }
         }
         return null;
@@ -199,10 +208,10 @@ public class Environment {
      * @param key
      * @return
      */
-    private Object findInOrganization(String key){
+    private BLObj findInOrganization(String key){
         for(BLObj blObj : this.organization.things){
             if(blObj.key.equals(key)){
-                return blObj.value;
+                return blObj;
             }
         }
         return null;
@@ -321,7 +330,5 @@ public class Environment {
         }
         return false;
     }
-
-
 
 }

@@ -22,11 +22,41 @@ public interface BLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmt(BLParser.StmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BLParser#complexStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComplexStmt(BLParser.ComplexStmtContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BLParser#simpleStmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSimpleStmt(BLParser.SimpleStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BLParser#runToolStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRunToolStmt(BLParser.RunToolStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BLParser#setStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSetStmt(BLParser.SetStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BLParser#sortStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSortStmt(BLParser.SortStmtContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BLParser#groupStmt}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGroupStmt(BLParser.GroupStmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BLParser#predicate_adverbial_attribute_object_stmt}.
 	 * @param ctx the parse tree
@@ -52,35 +82,11 @@ public interface BLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitPredicate_object_stmt(BLParser.Predicate_object_stmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BLParser#complexStmt}.
+	 * Visit a parse tree produced by {@link BLParser#compare_stmt}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitComplexStmt(BLParser.ComplexStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BLParser#runToolStmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRunToolStmt(BLParser.RunToolStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BLParser#setStmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSetStmt(BLParser.SetStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BLParser#sortStmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSortStmt(BLParser.SortStmtContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link BLParser#groupStmt}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGroupStmt(BLParser.GroupStmtContext ctx);
+	T visitCompare_stmt(BLParser.Compare_stmtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BLParser#subject}.
 	 * @param ctx the parse tree

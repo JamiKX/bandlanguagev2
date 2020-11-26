@@ -7,6 +7,8 @@ import java.util.Map;
 
 //句子父类
 public class Stmt implements Node {
+    public String text;
+
     @Override
     public boolean run(String methodName) {
         return false;
