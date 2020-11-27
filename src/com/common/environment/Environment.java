@@ -96,6 +96,20 @@ public class Environment {
     }
 
     /**
+     * 针对单句环境，查找key所对应的数据，如果有，则返回它，并在栈中删除
+     * 否则返回null
+     * @param key
+     * @return
+     */
+    public BLObj findWithDelete(String key){
+        BLObj res = findInStack(key);
+        if(res != null){
+            deleteInStack(key);
+        }
+        return res;
+    }
+
+    /**
      * 在固定一个环境中查找该词对应的内容
      * @param key 词
      * @param type 选择的环境
@@ -140,6 +154,51 @@ public class Environment {
         }
     }
 
+    /**
+     *  删除某个环境中oldKey所对应的记录，并插入新的记录，从而达到更新的目的
+     *  注意，因为是删除后增加，所以位置会改变
+     * @param oldKey 旧记录key
+     * @param newKey 新记录key
+     * @param newValue 新记录的值
+     * @param newValueType 新记录的类型
+     * @param type 环境
+     * @return 如果删除失败，返回fales
+     */
+    public boolean update(String oldKey,String newKey,Object newValue,BLObjType newValueType,EnvironmentType type){
+        boolean res = true;
+        switch (type){
+            case ORGANIZATION:
+                res = deleteInOrganization(oldKey);
+                if(!res){
+                    return false;
+                }
+                addInOrganization(newKey,newValue,newValueType);
+                break;
+            case BAND:
+                res = deleteInBand(oldKey);
+                if(!res){
+                    return false;
+                }
+                addInBand(newKey,newValue,newValueType);
+                break;
+            case MEMORY:
+                res = deleteInMemory(oldKey);
+                if(!res){
+                    return false;
+                }
+                addInMemory(newKey,newValue,newValueType);
+                break;
+            case STACK:
+                res = deleteInStack(oldKey);
+                if(!res){
+                    return false;
+                }
+                addInStack(newKey,newValue,newValueType);
+                break;
+            default: return false;
+        }
+        return true;
+    }
     /**
      * 在某个环境中，删除一个对象
      * @param key 中文名称

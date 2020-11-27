@@ -180,7 +180,7 @@ public class Visitor implements BLVisitor<Node> {
         if(compare_stmtContexts.size()>0){
             runToolStmt.conditionList = new LinkedList<>();
             for (BLParser.Compare_stmtContext context: compare_stmtContexts){
-                runToolStmt.conditionList.add((Compare)context.accept(this));
+                runToolStmt.conditionList.add((CompareStmt)context.accept(this));
             }
         }
         runToolStmt.text = ctx.getText();
@@ -215,7 +215,7 @@ public class Visitor implements BLVisitor<Node> {
         SortStmt sortStmt = new SortStmt();
         sortStmt.para = ctx.String(0).getText();
         sortStmt.objName = ctx.String(1).getText();
-        sortStmt.type = ctx.sort().getText();
+        sortStmt.type = ctx.sort().SortAscending() == null ? 1 : -1;
         sortStmt.text = ctx.getText();
         return sortStmt;
     }

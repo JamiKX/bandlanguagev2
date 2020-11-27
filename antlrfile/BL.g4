@@ -113,7 +113,7 @@ NoLessThan:'不小于'|'>=';
 
 InputPart:'输入部件';
 OutputPart:'输出部件';
-Element:'元素';
+Element:'元素的数量';
 Amount:'数量';
 Data:'数据';
 Max:'最大值';
