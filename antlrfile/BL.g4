@@ -53,8 +53,21 @@ object:(String|noun) (Split (String|noun))*;
 
 //谓语:动词
 predicate:verb;
+
 //定语：对象名称|形容词|条件判断的句子
-attribute:((String|compare_stmt|adjective|noun) De)+;
+//情况一： (属性名称|对象名称) 的
+//  年龄 的 最大值    ***工具 的 (输出部件)
+//情况二: (条件判断句子) 的 元素 的 (属性名称 的)
+// 年龄大于10 的 元素 的 个数     性别等于男的 元素 的  年龄 的 最大值
+//情况三: 形容词 的
+//  过期 的
+attribute:
+String De|
+compare_stmt De Element De (String De)? |
+adjective De;
+
+
+
 //状语:时间状语|地点状语|通用状语
 adverbial:place_adverbial|time_adverbial|common_adverbial;
 
@@ -73,7 +86,7 @@ common_adverbial:String In;
 //而虚词，则直接在规则文件中使用
 
 // 名词：
-noun:InputPart|OutputPart|Element|Amount|Data|Max|Min|Average|time|Number;
+noun:InputPart|OutputPart|Amount|Data|Max|Min|Average|time|Number;
 // 动词：
 verb:Show|Execute|Get|Find|Remove|Qiu|Set|Count|CarryOut|sort|Group;
 // 形容词：
@@ -113,7 +126,7 @@ NoLessThan:'不小于'|'>=';
 
 InputPart:'输入部件';
 OutputPart:'输出部件';
-Element:'元素的数量';
+Element:'元素'|'记录';
 Amount:'数量';
 Data:'数据';
 Max:'最大值';

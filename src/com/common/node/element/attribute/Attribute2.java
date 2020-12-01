@@ -7,16 +7,17 @@ import com.common.environment.EnvironmentConst;
 import com.common.environment.staticMessage.BLObjType;
 import com.common.environment.staticMessage.EnvironmentType;
 import com.common.environment.wetoband.BLObj;
+import com.common.node.sentence.simple.CompareStmt;
 import com.common.node.word.Str;
 
 import java.util.LinkedList;
 import java.util.List;
 
-
-//情况一： (属性名称|对象名称) 的
-//  年龄 的 最大值    ***工具 的 (输出部件)
-//String De
-public class Attribute1 extends Attribute {
+//情况二: (条件判断句子) 的 元素 的 (属性名称 的)
+// 年龄大于10 的 元素 的 个数     性别等于男的 元素 的  年龄 的 最大值
+//compare_stmt De Element De (String De)?
+public class Attribute2 extends Attribute {
+    public CompareStmt compareStmt;
     public Str str;
 
     @Override
@@ -33,17 +34,14 @@ public class Attribute1 extends Attribute {
             runMethod = methodName;
         }
         switch (runMethod){
-            case "getValueFromData":
-                return getValueFromData();
-            case "getObj":
-                return getObj();
+            case "judge":
+                return judge();
             default:
                 return false;
         }
     }
 
-    //在有状语的情况下，获取状语，并获取str所对应的属性的值的集合
-    public boolean getValueFromData(){
+    public boolean judge(){
         Environment environment = EnvironmentConst.environment.get();
         BLObj obj = environment.findWithDelete("状语");
         //不存在状语，或者状语的值不是集合
@@ -51,23 +49,26 @@ public class Attribute1 extends Attribute {
             return false;
         }
         JSONArray jsonArray = JSONArray.parseArray(obj.value.toString());
-        List<Object> res = new LinkedList<>();
+        JSONArray res = new JSONArray();
         for (int i=0;i<jsonArray.size();i++){
             JSONObject a = jsonArray.getJSONObject(i);
-            res.add(a.get(str.text));
+            environment.add("记录",a,BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
+            boolean r = compareStmt.run("compare");
+            if(!r){//执行失败
+                return false;
+            }
+            BLObj judgeResult = environment.findWithDelete("结果");
+            if(judgeResult.type == BLObjType.RESULT_BOOLEAN && (boolean)judgeResult.value == true ){
+                res.add(a);
+            }
         }
-        environment.add("定语",res,BLObjType.RESULT_LIST,EnvironmentType.STACK);
-        return true;
-    }
 
-    //str是某个对象
-    public boolean getObj(){
-        Environment environment = EnvironmentConst.environment.get();
-        BLObj obj = environment.find(str.text);
-        if(obj == null){
-            return false;
+        if(str != null){
+            environment.add("状语",res,BLObjType.RESULT_LIST, EnvironmentType.STACK);
+            return str.run("getValueFromData");
+        }else {
+            environment.add("定语",res,BLObjType.RESULT_LIST, EnvironmentType.STACK);
+            return true;
         }
-        environment.add("定语",obj.value,obj.type,EnvironmentType.STACK);
-        return true;
     }
 }

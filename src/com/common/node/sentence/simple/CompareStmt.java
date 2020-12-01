@@ -99,10 +99,10 @@ public class CompareStmt extends SimpleStmt {
         if(!getValue){
             return false;
         }
-        BLObj right = environment.find("结果",EnvironmentType.STACK);
-        environment.delete("结果",EnvironmentType.STACK);
+        BLObj right = environment.findWithDelete("结果");
         object.put(first.text,right.value);
         environment.add("结果",object, BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
         return true;
     }
+
 }

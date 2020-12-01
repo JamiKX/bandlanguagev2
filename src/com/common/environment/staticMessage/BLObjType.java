@@ -14,6 +14,8 @@ public enum BLObjType {
     DOCUMENT("文档ID","string"),
     RESULT_STRING("string类型的结果","string"),
     RESULT_INTEGER("int类型的结果","int"),
+    RESULT_LIST("list类型的结果","List"),
+    RESULT_BOOLEAN("boolean类型的结果","boolean"),
     RESULT_JSONOBJECT("jsonObject类型的结果","jsonObject"),
     RESULT_JSONARRAY("jsonArray类型的结果","jsonArray"),
     Node("帮语节点","node");

@@ -8,6 +8,8 @@ import com.common.node.element.adverbial.placeadverbial.PlaceAdverbial1;
 import com.common.node.element.adverbial.timeadverbial.TimeAdverbial1;
 import com.common.node.element.attribute.Attribute;
 import com.common.node.element.attribute.Attribute1;
+import com.common.node.element.attribute.Attribute2;
+import com.common.node.element.attribute.Attribute3;
 import com.common.node.element.object.Object;
 import com.common.node.element.object.Object1;
 import com.common.node.element.predicate.Predicate;
@@ -21,6 +23,7 @@ import com.common.node.sentence.simple.*;
 import com.common.node.word.Num;
 import com.common.node.word.Str;
 import com.common.node.word.Word;
+import com.common.node.word.real.adjective.Adjective;
 import com.common.node.word.real.adjective.Old;
 import com.common.node.word.real.noun.*;
 import com.common.node.word.real.noun.time.Today;
@@ -240,10 +243,10 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitObject(BLParser.ObjectContext ctx) {
         Object1 object1 = new Object1();
-        object1.list.add(ctx.getChild(0).accept(this));
+        object1.list.add((Word) ctx.getChild(0).accept(this));
         int num = ctx.getChildCount();
         for(int i=1;i+1<num;i=i+2){
-            object1.list.add(ctx.getChild(i+1).accept(this));
+            object1.list.add((Word) ctx.getChild(i+1).accept(this));
             object1.splits.add(ctx.getChild(i).getText());
         }
 
@@ -261,13 +264,34 @@ public class Visitor implements BLVisitor<Node> {
 
     @Override
     public Node visitAttribute(BLParser.AttributeContext ctx) {
-        Attribute1 attribute1 = new Attribute1();
-        int num = ctx.getChildCount();
-        for(int i=0;i+1<num;i=i+2){
-            attribute1.list.add(ctx.getChild(i).accept(this));
+        //情况三
+        if(ctx.adjective() != null){
+            Attribute3 attribute3 = new Attribute3();
+            attribute3.text = ctx.getText();
+            attribute3.adjective = (Adjective) ctx.adjective().accept(this);
+            return attribute3;
         }
-        attribute1.text = ctx.getText();
-        return attribute1;
+
+        //情况一
+        if(ctx.Element() == null){
+            Attribute1 attribute1 = new Attribute1();
+            attribute1.text = ctx.getText();
+            attribute1.str = (Str) ctx.String().accept(this);
+            return attribute1;
+        }
+
+        //情况二
+        if(ctx.compare_stmt() != null){
+            Attribute2 attribute2 = new Attribute2();
+            attribute2.text = ctx.getText();
+            attribute2.compareStmt = (CompareStmt) ctx.compare_stmt().accept(this);
+            if(ctx.String() != null){
+                attribute2.str = (Str) ctx.String().accept(this);
+            }
+            return attribute2;
+        }
+
+        return null;
     }
 
     @Override
