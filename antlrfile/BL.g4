@@ -44,12 +44,19 @@ compare_stmt: object compare object;
 
 
 //句子成分的划分
-//主语 ： 用户名称/属性名称
+//主语 ： 用户名称
 subject:String;
 
 //宾语:用户名称|工具名称|文档名称|岗位名称|对象名称|用户账号|消息板名称|帮区名称|机构名称|属性名称
 //宾语:固定的某些名称，如 ***部件 、最小值
-object:(String|noun) (Split (String|noun))*;
+object:object_single (object_split object_single)*;
+
+//宾语分割符
+object_split:Split;
+
+//单个宾语;String一般指某个对象
+object_single:(String|noun) (De noun)*;
+
 
 //谓语:动词
 predicate:verb;
@@ -62,8 +69,7 @@ predicate:verb;
 //情况三: 形容词 的
 //  过期 的
 attribute:
-String De|
-compare_stmt De Element De (String De)? |
+compare_stmt De |
 adjective De;
 
 
@@ -76,7 +82,7 @@ place_adverbial:At String (In)? ;
 
 //时间状语:在 时间
 time_adverbial:At time;
-//通用状语： *** 中
+//通用状语： *** 中  ,  String一般指集合或者得到的结果
 common_adverbial:String In;
 
 // 词的划分

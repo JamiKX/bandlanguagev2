@@ -100,6 +100,18 @@ public interface BLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitObject(BLParser.ObjectContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BLParser#object_split}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObject_split(BLParser.Object_splitContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link BLParser#object_single}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObject_single(BLParser.Object_singleContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BLParser#predicate}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

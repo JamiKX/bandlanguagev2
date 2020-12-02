@@ -15,8 +15,8 @@ import java.util.List;
 
 //
 public class Object1 extends Object {
-    public List<Word> list = new LinkedList<>(); // 各具体词
-    public List<String> splits = new LinkedList<>(); //分割字符
+    public List<ObjectSingle> list = new LinkedList<>(); // 各具体词
+    public List<ObjectSplit> splits = new LinkedList<>(); //分割字符
 
     @Override
     public boolean run(String methodName) {
@@ -46,30 +46,30 @@ public class Object1 extends Object {
      * @return
      */
     public boolean getValueFromData(){
-        Environment environment = EnvironmentConst.environment.get();
-        BLObj obj = environment.find("定语");
-        if(obj == null || obj.type != BLObjType.RESULT_JSONARRAY){
-            return false;
-        }
-        JSONArray jsonArray = JSONArray.parseArray(obj.value.toString());
-        JSONArray res = new JSONArray();
-        for (int i=0;i<jsonArray.size();i++){
-            JSONObject a = jsonArray.getJSONObject(i);
-            environment.add("记录",a,BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
-            JSONObject b = new JSONObject();
-            for(Word node : list){
-                boolean r = node.run(null);
-                if(!r){
-                    return false;
-                }else {
-                    BLObj nodeRes = environment.findWithDelete("结果");
-                    b.putAll((JSONObject)nodeRes.value);
-                }
-            }
-            res.add(b);
-            environment.delete("记录",EnvironmentType.STACK);
-        }
-        environment.add("宾语",res,BLObjType.RESULT_JSONARRAY,EnvironmentType.STACK);
+//        Environment environment = EnvironmentConst.environment.get();
+//        BLObj obj = environment.find("定语");
+//        if(obj == null || obj.type != BLObjType.RESULT_JSONARRAY){
+//            return false;
+//        }
+//        JSONArray jsonArray = JSONArray.parseArray(obj.value.toString());
+//        JSONArray res = new JSONArray();
+//        for (int i=0;i<jsonArray.size();i++){
+//            JSONObject a = jsonArray.getJSONObject(i);
+//            environment.add("记录",a,BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
+//            JSONObject b = new JSONObject();
+//            for(Word node : list){
+//                boolean r = node.run(null);
+//                if(!r){
+//                    return false;
+//                }else {
+//                    BLObj nodeRes = environment.findWithDelete("结果");
+//                    b.putAll((JSONObject)nodeRes.value);
+//                }
+//            }
+//            res.add(b);
+//            environment.delete("记录",EnvironmentType.STACK);
+//        }
+//        environment.add("宾语",res,BLObjType.RESULT_JSONARRAY,EnvironmentType.STACK);
         return true;
 
     }
@@ -79,17 +79,17 @@ public class Object1 extends Object {
      * @return
      */
     public boolean getObj(){
-        Environment environment = EnvironmentConst.environment.get();
-
-        JSONObject jsonObject = new JSONObject();
-        for (Word node : list){
-            boolean r = node.run(null);
-            if(!r){
-                return false;
-            }
-            jsonObject.put(node.text,environment.findWithDelete("宾语").value);
-        }
-        environment.add("宾语",jsonObject,BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
+//        Environment environment = EnvironmentConst.environment.get();
+//
+//        JSONObject jsonObject = new JSONObject();
+//        for (Word node : list){
+//            boolean r = node.run(null);
+//            if(!r){
+//                return false;
+//            }
+//            jsonObject.put(node.text,environment.findWithDelete("宾语").value);
+//        }
+//        environment.add("宾语",jsonObject,BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
 
         return true;
     }

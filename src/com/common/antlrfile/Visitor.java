@@ -1,7 +1,7 @@
 package com.common.antlrfile;
 
 import com.alibaba.fastjson.JSONObject;
-import com.common.node.Node;
+import com.common.node.*;
 import com.common.node.element.adverbial.Adverbial;
 import com.common.node.element.adverbial.commonadverbial.CommonAdverbial1;
 import com.common.node.element.adverbial.placeadverbial.PlaceAdverbial1;
@@ -9,9 +9,10 @@ import com.common.node.element.adverbial.timeadverbial.TimeAdverbial1;
 import com.common.node.element.attribute.Attribute;
 import com.common.node.element.attribute.Attribute1;
 import com.common.node.element.attribute.Attribute2;
-import com.common.node.element.attribute.Attribute3;
 import com.common.node.element.object.Object;
 import com.common.node.element.object.Object1;
+import com.common.node.element.object.ObjectSingle;
+import com.common.node.element.object.ObjectSplit;
 import com.common.node.element.predicate.Predicate;
 import com.common.node.element.predicate.Predicate1;
 import com.common.node.element.subject.Subject;
@@ -243,15 +244,35 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitObject(BLParser.ObjectContext ctx) {
         Object1 object1 = new Object1();
-        object1.list.add((Word) ctx.getChild(0).accept(this));
+        object1.list.add((ObjectSingle) ctx.getChild(0).accept(this));
         int num = ctx.getChildCount();
         for(int i=1;i+1<num;i=i+2){
-            object1.list.add((Word) ctx.getChild(i+1).accept(this));
-            object1.splits.add(ctx.getChild(i).getText());
+            object1.list.add((ObjectSingle) ctx.getChild(i+1).accept(this));
+            object1.splits.add((ObjectSplit) ctx.getChild(i).accept(this));
         }
 
         object1.text = ctx.getText();
         return object1;
+    }
+
+    @Override
+    public Node visitObject_split(BLParser.Object_splitContext ctx) {
+        ObjectSplit objectSplit = new ObjectSplit();
+        objectSplit.split = (Word) ctx.Split().accept(this);
+        objectSplit.text = ctx.getText();
+        return objectSplit;
+    }
+
+    @Override
+    public Node visitObject_single(BLParser.Object_singleContext ctx) {
+        ObjectSingle objectSingle = new ObjectSingle();
+        objectSingle.words.add((Word)ctx.getChild(0).accept(this));
+        int num = ctx.getChildCount();
+        for(int i=1;i+1<num;i=i+2){
+            objectSingle.words.add((Word) ctx.getChild(i+1).accept(this));
+        }
+        objectSingle.text = ctx.getText();
+        return objectSingle;
     }
 
     @Override
@@ -264,30 +285,19 @@ public class Visitor implements BLVisitor<Node> {
 
     @Override
     public Node visitAttribute(BLParser.AttributeContext ctx) {
-        //情况三
+        //情况二
         if(ctx.adjective() != null){
-            Attribute3 attribute3 = new Attribute3();
-            attribute3.text = ctx.getText();
-            attribute3.adjective = (Adjective) ctx.adjective().accept(this);
-            return attribute3;
-        }
-
-        //情况一
-        if(ctx.Element() == null){
             Attribute1 attribute1 = new Attribute1();
             attribute1.text = ctx.getText();
-            attribute1.str = (Str) ctx.String().accept(this);
+            attribute1.adjective = (Adjective) ctx.adjective().accept(this);
             return attribute1;
         }
 
-        //情况二
+        //情况一
         if(ctx.compare_stmt() != null){
             Attribute2 attribute2 = new Attribute2();
             attribute2.text = ctx.getText();
             attribute2.compareStmt = (CompareStmt) ctx.compare_stmt().accept(this);
-            if(ctx.String() != null){
-                attribute2.str = (Str) ctx.String().accept(this);
-            }
             return attribute2;
         }
 
