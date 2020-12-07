@@ -9,7 +9,7 @@ import com.common.node.element.adverbial.timeadverbial.TimeAdverbial1;
 import com.common.node.element.attribute.Attribute;
 import com.common.node.element.attribute.Attribute1;
 import com.common.node.element.attribute.Attribute2;
-import com.common.node.element.object.Object;
+import com.common.node.element.object.B_Object;
 import com.common.node.element.object.Object1;
 import com.common.node.element.object.ObjectSingle;
 import com.common.node.element.object.ObjectSplit;
@@ -116,7 +116,7 @@ public class Visitor implements BLVisitor<Node> {
         simpleStmt1.predicate = (Predicate) ctx.predicate().accept(this);
         simpleStmt1.adverbial = (Adverbial) ctx.adverbial().accept(this);
         simpleStmt1.attribute = (Attribute) ctx.attribute().accept(this);
-        simpleStmt1.object = (Object) ctx.object().accept(this);
+        simpleStmt1.BObject = (B_Object) ctx.object().accept(this);
 
         simpleStmt1.text = ctx.getText();
         return simpleStmt1;
@@ -128,7 +128,7 @@ public class Visitor implements BLVisitor<Node> {
 
         simpleStmt2.predicate = (Predicate) ctx.predicate().accept(this);
         simpleStmt2.attribute = (Attribute) ctx.attribute().accept(this);
-        simpleStmt2.object = (Object) ctx.object().accept(this);
+        simpleStmt2.BObject = (B_Object) ctx.object().accept(this);
 
         simpleStmt2.text = ctx.getText();
         return simpleStmt2;
@@ -140,7 +140,7 @@ public class Visitor implements BLVisitor<Node> {
 
         simpleStmt3.subject = (Subject) ctx.subject().accept(this);
         simpleStmt3.predicate = (Predicate) ctx.predicate().accept(this);
-        simpleStmt3.object = (Object) ctx.object().accept(this);
+        simpleStmt3.BObject = (B_Object) ctx.object().accept(this);
 
         simpleStmt3.text = ctx.getText();
         return simpleStmt3;
@@ -151,7 +151,7 @@ public class Visitor implements BLVisitor<Node> {
         SimpleStmt4 simpleStmt4 = new SimpleStmt4();
 
         simpleStmt4.predicate = (Predicate) ctx.predicate().accept(this);
-        simpleStmt4.object = (Object) ctx.object().accept(this);
+        simpleStmt4.BObject = (B_Object) ctx.object().accept(this);
 
         simpleStmt4.text = ctx.getText();
         return simpleStmt4;
@@ -160,8 +160,8 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitCompare_stmt(BLParser.Compare_stmtContext ctx) {
         CompareStmt compareStmt = new CompareStmt();
-        compareStmt.first = (Object) ctx.object(0).accept(this);
-        compareStmt.second = (Object) ctx.object(1).accept(this);
+        compareStmt.first = (B_Object) ctx.object(0).accept(this);
+        compareStmt.second = (B_Object) ctx.object(1).accept(this);
         compareStmt.compare = (Compare) ctx.compare().accept(this);
         compareStmt.text = ctx.getText();
         return compareStmt;
@@ -266,10 +266,10 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitObject_single(BLParser.Object_singleContext ctx) {
         ObjectSingle objectSingle = new ObjectSingle();
-        objectSingle.words.add((Word)ctx.getChild(0).accept(this));
+        objectSingle.noun_words.add((Noun)ctx.getChild(0).accept(this));
         int num = ctx.getChildCount();
         for(int i=1;i+1<num;i=i+2){
-            objectSingle.words.add((Word) ctx.getChild(i+1).accept(this));
+            objectSingle.noun_words.add((Noun) ctx.getChild(i+1).accept(this));
         }
         objectSingle.text = ctx.getText();
         return objectSingle;

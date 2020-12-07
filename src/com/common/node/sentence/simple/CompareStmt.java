@@ -6,18 +6,15 @@ import com.common.environment.EnvironmentConst;
 import com.common.environment.staticMessage.BLObjType;
 import com.common.environment.staticMessage.EnvironmentType;
 import com.common.environment.wetoband.BLObj;
-import com.common.node.element.object.Object;
+import com.common.node.element.object.B_Object;
 import com.common.node.script.SimpleStmt;
-import com.common.node.word.Str;
 import com.common.node.word.real.compare.Compare;
 import com.common.node.word.real.compare.Equals;
 
-import java.util.HashMap;
-
 //比较句
 public class CompareStmt extends SimpleStmt {
-    public Object first;
-    public Object second;
+    public B_Object first;
+    public B_Object second;
     public Compare compare;
 
 

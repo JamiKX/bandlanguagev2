@@ -14,9 +14,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-//情况一： (属性名称|对象名称) 的
-//  年龄 的 最大值    ***工具 的 (输出部件)
-//String De
+//情况一： 形容词 的
+// 损坏的 最大的 最小的
+//adjective De
 public class Attribute1 extends Attribute {
     public Adjective adjective;
+
+    @Override
+    public boolean run(String methodName) {
+        boolean res = false;
+        if(adjective.run(null)){
+            res = true;
+        }
+        return res;
+    }
 }

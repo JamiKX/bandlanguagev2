@@ -1,20 +1,13 @@
 package com.common.node.element.object;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.common.environment.Environment;
 import com.common.environment.EnvironmentConst;
-import com.common.environment.staticMessage.BLObjType;
-import com.common.environment.staticMessage.EnvironmentType;
-import com.common.environment.wetoband.BLObj;
-import com.common.node.Node;
-import com.common.node.word.Word;
 
 import java.util.LinkedList;
 import java.util.List;
 
 //
-public class Object1 extends Object {
+public class Object1 extends B_Object {
     public List<ObjectSingle> list = new LinkedList<>(); // 各具体词
     public List<ObjectSplit> splits = new LinkedList<>(); //分割字符
 
