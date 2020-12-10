@@ -9,7 +9,6 @@ import com.common.environment.staticMessage.EnvironmentType;
 import com.common.environment.wetoband.BLObj;
 import com.common.node.element.Element;
 import com.common.node.word.Str;
-import com.common.node.word.Word;
 import com.common.node.word.real.noun.Noun;
 
 import java.util.LinkedList;

@@ -21,48 +21,7 @@ public class Attribute2 extends Attribute {
 
     @Override
     public boolean run(String methodName) {
-        String runMethod = "";
-        if(null == methodName || methodName.length()==0){  //如果没有传入方法名称
-            Environment environment = EnvironmentConst.environment.get();
-            runMethod = environment.methodChoosed.poll();
-            //没有指定方法
-            if(null == runMethod){
-                return false;
-            }
-        }else {
-            runMethod = methodName;
-        }
-        switch (runMethod){
-            case "judge":
-                return judge();
-            default:
-                return false;
-        }
+        return false;
     }
 
-    public boolean judge(){
-        Environment environment = EnvironmentConst.environment.get();
-        BLObj obj = environment.findWithDelete("状语");
-        //不存在状语，或者状语的值不是集合
-        if(null == obj || obj.type != BLObjType.RESULT_JSONARRAY){
-            return false;
-        }
-        JSONArray jsonArray = JSONArray.parseArray(obj.value.toString());
-        JSONArray res = new JSONArray();
-        for (int i=0;i<jsonArray.size();i++){
-            JSONObject a = jsonArray.getJSONObject(i);
-            environment.add("记录",a,BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
-            boolean r = compareStmt.run("compare");
-            if(!r){//执行失败
-                return false;
-            }
-            BLObj judgeResult = environment.findWithDelete("结果");
-            if(judgeResult.type == BLObjType.RESULT_BOOLEAN && (boolean)judgeResult.value == true ){
-                res.add(a);
-            }
-        }
-
-        environment.add("定语",res,BLObjType.RESULT_LIST, EnvironmentType.STACK);
-        return true;
-    }
 }
