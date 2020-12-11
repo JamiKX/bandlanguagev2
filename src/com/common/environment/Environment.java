@@ -23,7 +23,7 @@ public class Environment {
     public int place; //分割全局环境和单句环境的标识，其中0-place为全局环境，place之后是单句环境(包括place)
 
     //存储要显示给用户的内容
-    public HashMap<String,Object> showForUser = new HashMap<String,Object>();
+    public Queue<String> showForUser = new LinkedList<String>();
 
     //保存用户选择的句子的执行方法，按照句子顺序进行存储和拿取
     public Queue<String> methodChoosed = new LinkedList<String>();
