@@ -24,21 +24,15 @@ public class ObjectSingle extends Element {
     public boolean run(String methodName) {
         boolean res = false;
         Environment environment = EnvironmentConst.environment.get();
-        BLObj blObj = environment.find("状语", EnvironmentType.STACK);
+        BLObj blObj =  environment.find("宾语", EnvironmentType.STACK);
         JSONObject jo = JSONObject.parseObject(blObj.value.toString());
-        ///////没有写判断parse以及边界问题
         if(object_string != null){
-            Object o_str = jo.get(environment.find(object_string.text, EnvironmentType.STACK).value);
+            Object o_str = jo.getJSONArray(object_string.text);
             jo = JSONObject.parseObject(o_str.toString());
-            environment.add("object_string", object_string.text, BLObjType.RESULT_STRING, EnvironmentType.STACK);
+            environment.update("宾语", "宾语", jo, BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
         }
         for (Noun noun: noun_words) {
-            if(noun.run(null)){
-                Object o = jo.get(environment.find(noun.text, EnvironmentType.STACK).value);
-                jo = JSONObject.parseObject(o.toString());
-                //加判断
-                environment.add("宾语", jo, BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
-            }
+            res = noun.run(null);
         }
         return res;
     }

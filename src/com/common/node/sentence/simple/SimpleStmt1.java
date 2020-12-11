@@ -19,13 +19,13 @@ public class SimpleStmt1 extends SimpleStmt {
      * @return
      */
     @Override
-    public boolean run(String methodName) {
-         //执行顺序 状语--宾语--定语--谓语run
+    public boolean run(String methodName) {//查找 通讯录集合 中 年龄大于10 的 成员 的 姓名
+         //执行顺序 状语--定语--宾语--谓语run
         boolean res = adverbial.run(null);
         if(res){
-            res = BObject.run(null);
-            if(res){
-                res = attribute.run(null);
+            //定语执行压入栈中，在第一个宾语执行后执行定语
+            if(attribute.run(null)) {
+                res = BObject.run(null);
                 if(res){
                     res = predicate.run(null);
                 }
