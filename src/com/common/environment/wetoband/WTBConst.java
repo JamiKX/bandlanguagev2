@@ -18,6 +18,7 @@ public class WTBConst {
         Band band = new Band();
         band.name = "测试帮区";
         band.things.add(new BLObj("测试工具","1231231", BLObjType.TOOLID));
+        band.things.add(new BLObj("通讯录工具","1231231", BLObjType.TOOLID));
         organization.name = "测试机构";
         organization.bands.add(band);
         organization.things.add(new BLObj("张三","1112111",BLObjType.USERID));

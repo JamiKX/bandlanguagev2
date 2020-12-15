@@ -21,14 +21,18 @@ public class ObjectSingle extends Element {
 
     @Override
     public boolean run(String methodName) {
-        boolean res = false;
+        boolean res = true;
         Environment environment = EnvironmentConst.environment.get();
-        BLObj blObj =  environment.find("宾语", EnvironmentType.STACK);
-        JSONObject jo = JSONObject.parseObject(blObj.value.toString());
         if(object_string != null){
-            Object o_str = jo.getJSONArray(object_string.text);
-            jo = JSONObject.parseObject(o_str.toString());
-            environment.update("宾语", "宾语", jo, BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
+            boolean r = object_string.run(null);
+            if(!r){
+                return false;
+            }
+            BLObj blObj = environment.findWithDelete(object_string.text);
+            if(blObj == null){
+                return false;
+            }
+            environment.add("宾语",blObj.value,blObj.type,EnvironmentType.STACK);
         }
         for (Noun noun: noun_words) {
             res = noun.run(null);

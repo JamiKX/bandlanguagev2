@@ -53,6 +53,7 @@ public class RunToolStmt extends ComplexStmt {
         if (!success){
             return false;
         }
+        //在这里，执行完成之后，得到的数据应该是在栈中的，需要进行处理和筛选，看哪些需要放到剧本环境中
         if(null != saveStmt){
             success = saveStmt.run(null);
         }
