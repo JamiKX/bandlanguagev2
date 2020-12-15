@@ -32,7 +32,7 @@ public class ObjectSingle extends Element {
             if(blObj == null){
                 return false;
             }
-            environment.add("宾语",blObj.value,blObj.type,EnvironmentType.STACK);
+            environment.update("宾语", "宾语",blObj.value,blObj.type,EnvironmentType.STACK);
         }
         for (Noun noun: noun_words) {
             res = noun.run(null);
