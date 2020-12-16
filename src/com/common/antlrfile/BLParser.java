@@ -1408,7 +1408,9 @@ public class BLParser extends Parser {
 		public TimeContext time() {
 			return getRuleContext(TimeContext.class,0);
 		}
-		public TerminalNode Number() { return getToken(BLParser.Number, 0); }
+		public NumeralsContext numerals() {
+			return getRuleContext(NumeralsContext.class,0);
+		}
 		public NounContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1487,7 +1489,7 @@ public class BLParser extends Parser {
 				enterOuterAlt(_localctx, 9);
 				{
 				setState(201);
-				match(Number);
+				numerals();
 				}
 				break;
 			default:
@@ -1918,8 +1920,8 @@ public class BLParser extends Parser {
 		"\2\2\u00c0\u00c1\7*\2\2\u00c1\u00c2\7\"\2\2\u00c2/\3\2\2\2\u00c3\u00cd"+
 		"\7\25\2\2\u00c4\u00cd\7\26\2\2\u00c5\u00cd\7\30\2\2\u00c6\u00cd\7\31\2"+
 		"\2\u00c7\u00cd\7\32\2\2\u00c8\u00cd\7\33\2\2\u00c9\u00cd\7\34\2\2\u00ca"+
-		"\u00cd\5:\36\2\u00cb\u00cd\7)\2\2\u00cc\u00c3\3\2\2\2\u00cc\u00c4\3\2"+
-		"\2\2\u00cc\u00c5\3\2\2\2\u00cc\u00c6\3\2\2\2\u00cc\u00c7\3\2\2\2\u00cc"+
+		"\u00cd\5:\36\2\u00cb\u00cd\5\66\34\2\u00cc\u00c3\3\2\2\2\u00cc\u00c4\3"+
+		"\2\2\2\u00cc\u00c5\3\2\2\2\u00cc\u00c6\3\2\2\2\u00cc\u00c7\3\2\2\2\u00cc"+
 		"\u00c8\3\2\2\2\u00cc\u00c9\3\2\2\2\u00cc\u00ca\3\2\2\2\u00cc\u00cb\3\2"+
 		"\2\2\u00cd\61\3\2\2\2\u00ce\u00da\7\3\2\2\u00cf\u00da\7\4\2\2\u00d0\u00da"+
 		"\7\5\2\2\u00d1\u00da\7\6\2\2\u00d2\u00da\7\7\2\2\u00d3\u00da\7\b\2\2\u00d4"+

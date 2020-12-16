@@ -1,4 +1,4 @@
-package com.common.node.word.real.numerals;
+package com.common.node.word.real.noun.numerals;
 
 import com.common.environment.Environment;
 import com.common.environment.EnvironmentConst;

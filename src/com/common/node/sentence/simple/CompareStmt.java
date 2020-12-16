@@ -96,7 +96,7 @@ public class CompareStmt extends SimpleStmt {
         if(!getValue){
             return false;
         }
-        BLObj right = environment.findWithDelete("结果");
+        BLObj right = environment.findWithDelete("宾语");
         object.put(first.text,right.value);
         environment.add("结果",object, BLObjType.RESULT_JSONOBJECT,EnvironmentType.STACK);
         return true;

@@ -12,7 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 public class Test {
     public static void main(String[] args) {
-        CharStream input = CharStreams.fromString("执行 通讯录工具");
+        CharStream input = CharStreams.fromString("执行 通讯录工具 , 其中 ， 姓名 等于 ‘张三’ ，年龄 等于 12 ，得到 个人信息");
         BLLexer lexer = new BLLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         BLParser parser = new BLParser(tokens);

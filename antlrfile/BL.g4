@@ -92,7 +92,7 @@ common_adverbial:String In;
 //而虚词，则直接在规则文件中使用
 
 // 名词：
-noun:InputPart|OutputPart|Amount|Data|Max|Min|Average|time|Number;
+noun:InputPart|OutputPart|Amount|Data|Max|Min|Average|time|numerals;
 // 动词：
 verb:Show|Execute|Get|Find|Remove|Qiu|Set|Count|CarryOut|sort|Group;
 // 形容词：
@@ -159,6 +159,6 @@ Dot :'.'|'。';
 Split:'、';
 //特殊处理
 Number :[0-9]+;
-String :([a-zA-Z0-9$_] | [\u4E00-\u9FA5])+;
+String :('‘' )? (([a-zA-Z0-9$_] | [\u4E00-\u9FA5])+) ('’')?;
 Ws :[ \t\r\n]+ -> skip;
 Comment :'//' ~[\r\n]* -> channel(HIDDEN);

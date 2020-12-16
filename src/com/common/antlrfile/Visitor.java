@@ -21,13 +21,13 @@ import com.common.node.script.Script;
 import com.common.node.script.Stmt;
 import com.common.node.sentence.complex.*;
 import com.common.node.sentence.simple.*;
-import com.common.node.word.Num;
 import com.common.node.word.Str;
 import com.common.node.word.Word;
 import com.common.node.word.real.adjective.Adjective;
 import com.common.node.word.real.adjective.Old;
 import com.common.node.word.real.noun.*;
 import com.common.node.word.real.noun.time.Today;
+import com.common.node.word.real.noun.numerals.Number;
 import com.common.node.word.real.quantifiers.Ge;
 import com.common.node.word.real.verb.*;
 import com.common.node.word.real.compare.*;
@@ -398,7 +398,7 @@ public class Visitor implements BLVisitor<Node> {
             JSONObject jsonObject = (JSONObject) JSONObject.toJSON(word0);
             word = jsonObject.toJavaObject(word0.getClass());
         }else if(terminalNode.getText().matches("[0-9]+")){
-            word = new Num();
+            word = new Number();
         } else {
             word = new Str();
         }
