@@ -243,16 +243,16 @@ public class Visitor implements BLVisitor<Node> {
 
     @Override
     public Node visitObject(BLParser.ObjectContext ctx) {
-        Object1 object1 = new Object1();
-        object1.list.add((ObjectSingle) ctx.getChild(0).accept(this));
-        int num = ctx.getChildCount();
-        for(int i=1;i+1<num;i=i+2){
-            object1.list.add((ObjectSingle) ctx.getChild(i+1).accept(this));
-            object1.splits.add((ObjectSplit) ctx.getChild(i).accept(this));
+        B_Object BObject = new B_Object();
+        BObject.objectSingle = (ObjectSingle) ctx.object_single(0).accept(this);
+        int num = ctx.object_single().size();
+        for(int i=1; i<num; i++){
+            BObject.objectSingleList.add((ObjectSingle) ctx.object_single(i).accept(this));
+            BObject.objectSplitList.add((ObjectSplit) ctx.object_split(i-1).accept(this));
         }
 
-        object1.text = ctx.getText();
-        return object1;
+        BObject.text = ctx.getText();
+        return BObject;
     }
 
     @Override

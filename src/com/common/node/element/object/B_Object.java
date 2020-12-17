@@ -8,12 +8,14 @@ import com.common.environment.staticMessage.EnvironmentType;
 import com.common.environment.wetoband.BLObj;
 import com.common.node.element.Element;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //'宾语'
 public class B_Object extends Element {
     public ObjectSingle objectSingle;
-    public List<ObjectSingle> objectSingleList;
+    public List<ObjectSplit> objectSplitList = new ArrayList<>();
+    public List<ObjectSingle> objectSingleList = new ArrayList<>();
 
     @Override
     public boolean run(String methodName) {
@@ -25,7 +27,8 @@ public class B_Object extends Element {
             //设定填充剧本环境到宾语?
             environment.add("宾语", environment.scriptEnvironment.toString(), BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
         }
-        if(objectSingle.run(null)){
+        res = objectSingle.run(null);
+        if(res){
             for (ObjectSingle obs: objectSingleList) {
                 res = obs.run(null);
             }
