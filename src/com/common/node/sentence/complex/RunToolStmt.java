@@ -32,10 +32,15 @@ public class RunToolStmt extends ComplexStmt {
      */
     public boolean runTool(){
         Environment environment = EnvironmentConst.environment.get();
-        JSONObject params = new JSONObject();
+        boolean runRes = false;
+
         if(conditionList != null){
+            JSONObject params = new JSONObject();
             for (CompareStmt a : conditionList){
-                a.run("changeMap");
+                runRes = a.run("changeMap");
+                if(!runRes){
+                    return false;
+                }
                 BLObj aRes = environment.findWithDelete("结果");
                 //执行出错
                 if(aRes == null){
@@ -46,18 +51,26 @@ public class RunToolStmt extends ComplexStmt {
                     params.putAll(json);
                 }
             }
+            environment.add("参数",params, BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
         }
-        environment.add("参数",params, BLObjType.RESULT_JSONOBJECT, EnvironmentType.STACK);
-        //执行工具
-        boolean success = mainStmt.run(null);
-        if (!success){
-            return false;
-        }
-        //在这里，执行完成之后，得到的数据应该是在栈中的，需要进行处理和筛选，看哪些需要放到剧本环境中
+
         if(null != saveStmt){
-            success = saveStmt.run(null);
+            runRes = saveStmt.run(null);
+            if(!runRes){
+                return false;
+            }
+            BLObj aRes = environment.findWithDelete("结果");
+            //执行出错
+            if(aRes == null){
+                return false;
+            }else {
+                environment.add("指定接口",aRes.value,aRes.type, EnvironmentType.STACK);
+            }
         }
-        if (!success){
+
+        //执行工具
+        runRes = mainStmt.run(null);
+        if (!runRes){
             return false;
         }
         return true;
