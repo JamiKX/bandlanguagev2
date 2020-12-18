@@ -160,8 +160,6 @@ public class Visitor implements BLVisitor<Node> {
     @Override
     public Node visitCompare_stmt(BLParser.Compare_stmtContext ctx) {
         CompareStmt compareStmt = new CompareStmt();
-        compareStmt.first = (B_Object) ctx.object(0).accept(this);
-        compareStmt.second = (B_Object) ctx.object(1).accept(this);
         compareStmt.compare = (Compare) ctx.compare().accept(this);
         compareStmt.text = ctx.getText();
         return compareStmt;
@@ -180,11 +178,11 @@ public class Visitor implements BLVisitor<Node> {
         if(predicate_object_stmtContexts.size()>1){
             runToolStmt.saveStmt = (SimpleStmt4) predicate_object_stmtContexts.get(1).accept(this);
         }
-        List<BLParser.Compare_stmtContext> compare_stmtContexts = ctx.compare_stmt();
+        List<BLParser.CompareContext> compare_stmtContexts = ctx.compare();
         if(compare_stmtContexts.size()>0){
             runToolStmt.conditionList = new LinkedList<>();
-            for (BLParser.Compare_stmtContext context: compare_stmtContexts){
-                runToolStmt.conditionList.add((CompareStmt)context.accept(this));
+            for (BLParser.CompareContext context: compare_stmtContexts){
+                runToolStmt.conditionList.add((Compare)context.accept(this));
             }
         }
         runToolStmt.text = ctx.getText();
@@ -243,16 +241,16 @@ public class Visitor implements BLVisitor<Node> {
 
     @Override
     public Node visitObject(BLParser.ObjectContext ctx) {
-        B_Object BObject = new B_Object();
-        BObject.objectSingle = (ObjectSingle) ctx.object_single(0).accept(this);
+        Object1 object1 = new Object1();
+        object1.list.add((ObjectSingle) ctx.object_single(0).accept(this));
         int num = ctx.object_single().size();
-        for(int i=1; i<num; i++){
-            BObject.objectSingleList.add((ObjectSingle) ctx.object_single(i).accept(this));
-            BObject.objectSplitList.add((ObjectSplit) ctx.object_split(i-1).accept(this));
+        for(int i=2; i<num; i++){
+            object1.list.add((ObjectSingle) ctx.object_single(i).accept(this));
+            object1.splits.add((ObjectSplit) ctx.object_split(i-1).accept(this));
         }
 
-        BObject.text = ctx.getText();
-        return BObject;
+        object1.text = ctx.getText();
+        return object1;
     }
 
     @Override
@@ -369,8 +367,18 @@ public class Visitor implements BLVisitor<Node> {
     }
 
     @Override
-    public Node visitCompare(BLParser.CompareContext ctx) {
+    public Node visitCompareWord(BLParser.CompareWordContext ctx) {
         return ctx.getChild(0).accept(this);
+    }
+
+    @Override
+    public Node visitCompare(BLParser.CompareContext ctx) {
+        Compare compare = new Compare();
+        compare.first = (B_Object) ctx.object(0).accept(this);
+        compare.second = (B_Object) ctx.object(1).accept(this);
+        compare.compare = (CompareWord) ctx.compareWord().accept(this);
+        compare.text = ctx.getText();
+        return compare;
     }
 
     @Override

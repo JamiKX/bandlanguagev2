@@ -8,7 +8,7 @@ import com.common.environment.wetoband.BLObj;
 import com.common.node.word.real.verb.Verb;
 
 //'不等于'
-public class NoEquals extends Compare {
+public class NoEquals extends CompareWord {
     @Override
     public boolean run(String methodName) {
         Environment environment = EnvironmentConst.environment.get();

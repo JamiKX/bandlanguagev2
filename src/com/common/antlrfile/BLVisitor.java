@@ -88,6 +88,12 @@ public interface BLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompare_stmt(BLParser.Compare_stmtContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link BLParser#compare}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCompare(BLParser.CompareContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link BLParser#subject}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -184,11 +190,11 @@ public interface BLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTime(BLParser.TimeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link BLParser#compare}.
+	 * Visit a parse tree produced by {@link BLParser#compareWord}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompare(BLParser.CompareContext ctx);
+	T visitCompareWord(BLParser.CompareWordContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link BLParser#sort}.
 	 * @param ctx the parse tree

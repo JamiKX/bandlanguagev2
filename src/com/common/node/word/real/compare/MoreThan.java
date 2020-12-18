@@ -8,7 +8,7 @@ import com.common.environment.wetoband.BLObj;
 import com.common.node.word.real.verb.Verb;
 
 //'大于'
-public class MoreThan extends Compare {
+public class MoreThan extends CompareWord {
 
     @Override
     public boolean run(String methodName) {

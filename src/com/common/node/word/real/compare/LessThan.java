@@ -8,7 +8,7 @@ import com.common.environment.wetoband.BLObj;
 import com.common.node.word.real.verb.Verb;
 
 //'小于'
-public class LessThan extends Compare {
+public class LessThan extends CompareWord {
     @Override
     public boolean run(String methodName) {
         Environment environment = EnvironmentConst.environment.get();

@@ -15,7 +15,7 @@ compare_stmt;
 
 
 // 执行工具: “执行” <工具名称> [“其中” {<输入部件> “=” （<常量> | <另一个工具的输出部件> | <输出部件的某个属性>）} ] [ “,得到” {<输出部件> }]
-runToolStmt:predicate_object_stmt (Comma Among (Comma compare_stmt)+ )? (Comma predicate_object_stmt)?;
+runToolStmt:predicate_object_stmt (Comma Among (Comma compare)+ )? (Comma predicate_object_stmt)?;
 
 //设定句:“设定” <术语> “=” (<有明确输出的句子> | <常量> | <输出部件> )
 setStmt:Set String Equals (stmt | String | Number );
@@ -39,9 +39,11 @@ subject_predicate_object_stmt:subject predicate object;
 //谓宾句：谓语 宾语
 predicate_object_stmt:predicate object;
 
-//比较句： 宾语 比较词 宾语
-compare_stmt: object compare object;
+//疑问句： 宾语 比较词 宾语
+compare_stmt: compare Mark;
 
+//比较短语： 宾语 比较词 宾语
+compare: object compareWord object;
 
 //句子成分的划分
 //主语 ： 用户名称
@@ -105,7 +107,7 @@ quantifiers:Ge;
 
 //某些词大致是属于表示一类含义的，先统一规约一下
 time:Today;
-compare:Equals|NoEquals|MoreThan|NoMoreThan|LessThan|NoLessThan;
+compareWord:Equals|NoEquals|MoreThan|NoMoreThan|LessThan|NoLessThan;
 sort:SortDescending|SortAscending;
 
 //实词
@@ -157,6 +159,7 @@ At:'在';
 Comma :','|'，';
 Dot :'.'|'。';
 Split:'、';
+Mark:'?'|'？';
 //特殊处理
 Number :[0-9]+;
 String :('‘' )? (([a-zA-Z0-9$_] | [\u4E00-\u9FA5])+) ('’')?;

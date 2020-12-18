@@ -16,10 +16,16 @@ public class Element extends Noun {
 
     private boolean getElement(){
         Environment environment = EnvironmentConst.environment.get();
-        BLObj obj = environment.find("定语",EnvironmentType.STACK);
+        BLObj obj = environment.find("状语",EnvironmentType.STACK);
         //没有或者类型不对
         if(obj == null || obj.type != BLObjType.RESULT_JSONARRAY){
             return false;
+        }
+        obj = environment.find("定语",EnvironmentType.STACK);
+
+        //如果有定语，一般是要将宾语进行过滤的
+        if(obj != null){
+
         }
         environment.add("宾语",obj.value,BLObjType.RESULT_JSONARRAY, EnvironmentType.STACK);
         return true;

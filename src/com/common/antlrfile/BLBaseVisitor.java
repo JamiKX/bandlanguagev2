@@ -107,6 +107,13 @@ public class BLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements BLV
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitCompare(BLParser.CompareContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitSubject(BLParser.SubjectContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -219,7 +226,7 @@ public class BLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements BLV
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCompare(BLParser.CompareContext ctx) { return visitChildren(ctx); }
+	@Override public T visitCompareWord(BLParser.CompareWordContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

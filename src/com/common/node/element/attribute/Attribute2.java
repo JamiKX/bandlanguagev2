@@ -14,10 +14,9 @@ public class Attribute2 extends Attribute {
 
     @Override
     public boolean run(String methodName) {
-        boolean res = true;
         Environment environment = EnvironmentConst.environment.get();
         environment.add("定语", compareStmt, BLObjType.Node, EnvironmentType.STACK);
-        return res;
+        return true;
     }
 
 }

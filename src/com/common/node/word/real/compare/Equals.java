@@ -9,7 +9,7 @@ import com.common.node.word.Word;
 import com.common.node.word.real.verb.Verb;
 
 //'等于'
-public class Equals extends Compare {
+public class Equals extends CompareWord {
 
     @Override
     public boolean run(String methodName) {

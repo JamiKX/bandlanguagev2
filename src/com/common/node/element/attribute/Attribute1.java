@@ -15,9 +15,8 @@ public class Attribute1 extends Attribute {
 
     @Override
     public boolean run(String methodName) {
-        boolean res = true;
         Environment environment = EnvironmentConst.environment.get();
         environment.add("定语", adjective, BLObjType.Node, EnvironmentType.STACK);
-        return res;
+        return true;
     }
 }

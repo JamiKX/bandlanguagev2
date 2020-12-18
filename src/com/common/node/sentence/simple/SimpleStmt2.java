@@ -18,7 +18,7 @@ public class SimpleStmt2 extends SimpleStmt {
      */
     @Override
     public boolean run(String methodName) {
-        //执行顺序 宾语--定语--谓语
+        //执行顺序 定语-宾语-谓语
         boolean res = attribute.run(null);
         if(res){
             res = BObject.run(null);
